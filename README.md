@@ -19,3 +19,25 @@ npm install flint-process-editor --save
 ```jsx
 import ProcessEditor from 'flint-process-editor'
 ```
+
+### Example
+
+```jsx
+
+// define functions of event listeners
+const onSaved = (processData, editorData) => {
+  console.log(processData, editorData);
+};
+const stepDbClick = (stepData) => {
+  // process some async actions to fetch input params and append it to stepData
+  this.operations.updateStepData(newStepData);
+};
+// place the react component under any container
+<ProcessEditor
+  operations={this.operations}
+  stepOptions={stepOptions}
+  editorData={editorData}
+  onSaved={onSaved}
+  stepDbClick={stepDbClick}
+/>
+```
