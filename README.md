@@ -41,3 +41,15 @@ const stepDbClick = (stepData) => {
   stepDbClick={stepDbClick}
 />
 ```
+
+### Properties
+
+| Property | Type | Required? | Description |
+|---|---|:---:|---|
+| operations | `object` | Y | handler to operate behavior inside `ProcessEditor` component. Functions: `this.operations.updateStepData(stepData)`|
+| stepOptions | `object` | Y | All available options provided by main program. Example as below |
+| editorData | `object` | Y | Editor data to redraw flowchart provided by editor itself, which will be saved locally and used for redrawing edited flowchart |
+| onSaved | `func` | Y | event triggered when save button clicked |
+| stepDbClick | `func` | Y | event triggered when each step is double clicked |
+
+
