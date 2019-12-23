@@ -87,3 +87,24 @@ const stepData = {
   "params": {...}  // optional, appended by main program.
 };
 ```
+
+#### `processData`
+
+```jsx
+const processData = {
+  "startAt": "Submit Expense",
+  "Submit Expense": {
+    "data": stepData1,
+    "next": "Validate Expense Items"
+  },
+  "Validate Expense Items": {
+    "data": stepData2,
+    "next": "Valid?"
+  },
+  "Valid?": {
+    "data": stepData3,
+    "next": ["Manager Approval", null]
+  },
+  // ...
+ };
+```
