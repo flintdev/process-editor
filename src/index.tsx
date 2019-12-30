@@ -1,10 +1,14 @@
 import * as React from "react";
+import 'antd/dist/antd.css';
 
-export default class MyAwosomeApp extends React.Component<{}, {}> {
+import { LayoutContainer } from "./containers/LayoutContainer";
+
+
+export default class ProcessEditor extends React.Component<{}, {}> {
     render() {
         return (
-            <div>
-                hello world
+            <div style={{height: `100%`}}>
+                <LayoutContainer/>
             </div>
         )
     }

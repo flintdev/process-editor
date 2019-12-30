@@ -1,12 +1,12 @@
 import * as React from "react";
 import {render} from 'react-dom'
-import MyAwosomeApp from '../lib/index';
+import ProcessEditor from '../lib/index';
 
 export class App extends React.Component<{}, {}> {
     render() {
         return (
-            <div>
-                <MyAwosomeApp/>
+            <div style={{height: `100%`}}>
+                <ProcessEditor/>
             </div>
         );
     }
