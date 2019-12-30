@@ -1,0 +1,17 @@
+{
+        "compilerOptions": {
+                "esModuleInterop": true,
+                "removeComments": true,
+                "module": "esnext",
+                "moduleResolution": "node",
+                "target": "es6",
+                "jsx": "react",
+                "sourceMap": false,
+                "outDir": "./dist",
+                "strict": true,
+                "declaration": true,
+        },
+        "include": [
+                "src"
+        ]
+}
