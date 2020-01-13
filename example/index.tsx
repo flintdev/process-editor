@@ -1,6 +1,6 @@
 import * as React from "react";
 import {render} from 'react-dom'
-import ProcessEditor from '../lib/index';
+import ProcessEditor from '../src/index';
 
 export class App extends React.Component<{}, {}> {
     render() {

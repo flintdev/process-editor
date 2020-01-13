@@ -1,12 +1,13 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import SketchContainer from './SketchContainer';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 export const LayoutContainer = () => {
     return (
-        <Layout style={{height: `100%`}}>
+        <Layout style={{ height: `100%` }}>
             <Header>
                 <Menu
                     theme="dark"
@@ -85,8 +86,8 @@ export const LayoutContainer = () => {
                             minHeight: 280,
                         }}
                     >
-                        Content
-        </Content>
+                        <SketchContainer />
+                    </Content>
                 </Layout>
             </Layout>
         </Layout>
