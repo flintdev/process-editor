@@ -1,12 +1,15 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import SketchBoard from './SketchBoard';
+import { DndProvider } from 'react-dnd'
+import Backend from 'react-dnd-html5-backend'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 export const LayoutContainer = () => {
     return (
-        <Layout style={{height: `100%`}}>
+        <Layout style={{ height: `100%` }}>
             <Header>
                 <Menu
                     theme="dark"
@@ -85,8 +88,10 @@ export const LayoutContainer = () => {
                             minHeight: 280,
                         }}
                     >
-                        Content
-        </Content>
+                        <DndProvider backend={Backend}>
+                            <SketchBoard />
+                        </DndProvider>
+                    </Content>
                 </Layout>
             </Layout>
         </Layout>
