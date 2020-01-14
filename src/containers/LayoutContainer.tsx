@@ -1,95 +1,69 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import SketchContainer from './SketchContainer';
+import { Button } from 'antd';
 
-const { SubMenu } = Menu;
+type Props = {
+    stepOptions: any[]
+    onSaved: any
+    stepDbClick: any
+}
+
+// const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-export const LayoutContainer = () => {
-    return (
-        <Layout style={{ height: `100%` }}>
-            <Header>
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    style={{ lineHeight: '64px' }}
-                >
-                    <Menu.Item key="1">nav 1</Menu.Item>
-                    <Menu.Item key="2">nav 2</Menu.Item>
-                    <Menu.Item key="3">nav 3</Menu.Item>
-                </Menu>
-            </Header>
-            <Layout>
-                <Sider width={200} style={{ background: '#fff' }}>
-                    <Menu
-                        mode="inline"
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
-                        style={{ height: '100%', borderRight: 0 }}
+export default class LayoutContainer extends React.Component<Props> {
+    render() {
+        const {stepOptions, onSaved} = this.props;
+        return (
+            <Layout style={{ height: `100%` }}>
+                <Layout style={{ maxHeight: 50 }}>
+                    <div
+                        style={{ height: 50, backgroundColor: '#fff' }}
                     >
-                        <SubMenu
-                            key="sub1"
-                            title={
-                                <span>
-                                    <Icon type="user" />
-                                    subnav 1
-              </span>
-                            }
+                        <Button key="1" style={{float: 'left', margin: 10}} ><Icon type="undo"/> undo </Button>
+                        <Button key="2" style={{float: 'left', margin: 10}} ><Icon type="redo"/> redo </Button>
+                        <Button key="3" style={{float: 'right', margin: 10}} onClick={() => onSaved()} type="primary">Save</Button>
+                    </div>
+                </Layout>
+                <Layout>
+                    <Sider width={200} style={{ background: '#fff' }}>
+                        <Menu
+                            mode="inline"
+                            defaultSelectedKeys={[]}
+                            defaultOpenKeys={[]}
+                            style={{ height: '100%', borderRight: 0 }}
                         >
-                            <Menu.Item key="1">option1</Menu.Item>
-                            <Menu.Item key="2">option2</Menu.Item>
-                            <Menu.Item key="3">option3</Menu.Item>
-                            <Menu.Item key="4">option4</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="sub2"
-                            title={
-                                <span>
-                                    <Icon type="laptop" />
-                                    subnav 2
-              </span>
+                            {
+                            !!stepOptions && stepOptions.map(option => {
+                                    return <Menu.Item key={option.type}>{option.icon} {option.type}</Menu.Item>
+                                })
                             }
+                        </Menu>
+                    </Sider>
+                    <Layout>
+                        {/* <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item>List</Breadcrumb.Item>
+                            <Breadcrumb.Item>App</Breadcrumb.Item>
+                        </Breadcrumb> */}
+                        <Content
+                            style={{
+                                background: '#fff',
+                                margin: 0,
+                                minHeight: 280,
+                                backgroundSize: `10px 10px`,
+                                backgroundImage: `
+                                    linear-gradient(to right, #eee 1px, transparent 1px),
+                                    linear-gradient(to bottom, #eee 1px, transparent 1px)
+                                `
+                            }}
                         >
-                            <Menu.Item key="5">option5</Menu.Item>
-                            <Menu.Item key="6">option6</Menu.Item>
-                            <Menu.Item key="7">option7</Menu.Item>
-                            <Menu.Item key="8">option8</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="sub3"
-                            title={
-                                <span>
-                                    <Icon type="notification" />
-                                    subnav 3
-              </span>
-                            }
-                        >
-                            <Menu.Item key="9">option9</Menu.Item>
-                            <Menu.Item key="10">option10</Menu.Item>
-                            <Menu.Item key="11">option11</Menu.Item>
-                            <Menu.Item key="12">option12</Menu.Item>
-                        </SubMenu>
-                    </Menu>
-                </Sider>
-                <Layout style={{ padding: '0 24px 24px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <Content
-                        style={{
-                            background: '#fff',
-                            padding: 24,
-                            margin: 0,
-                            minHeight: 280,
-                        }}
-                    >
-                        <SketchContainer />
-                    </Content>
+                            <SketchContainer />
+                        </Content>
+                    </Layout>
                 </Layout>
             </Layout>
-        </Layout>
-    )
+        )
+    }
 }
