@@ -6,11 +6,13 @@ import LeaderLine from 'leader-line';
 const lines: any[] = [];
 export default class SketchContainer extends React.Component {
     componentDidMount() {
-        const a = document.getElementById('start');
-        const b = document.getElementById('end');
-        if (a && b) {
-            lines.push(new LeaderLine(a, b));
-        }
+        setTimeout(() => {
+            const a = document.getElementById('start');
+            const b = document.getElementById('end');
+            if (a && b) {
+                lines.push(new LeaderLine(a, b));
+            }
+        }, 1)
     }
 
     render() {
@@ -20,7 +22,7 @@ export default class SketchContainer extends React.Component {
         ]
 
         return (
-            <DraggableContainer style={{ height: 600, position: 'relative' }}>
+            <DraggableContainer style={{ height: '100%', position: 'relative' }}>
                 {
                     children.map(({ id, position }) => {
                         const style = {
@@ -31,7 +33,9 @@ export default class SketchContainer extends React.Component {
                         }
 
                         return (
-                            <DraggableChild key={id} defaultPosition={position} 
+                            <DraggableChild
+                                key={id}
+                                defaultPosition={position}
                                 onDrag={() => lines.forEach(line => line.position())}>
                                 <div style={style} id={id} />
                             </DraggableChild>
