@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render } from 'react-dom'
-import ProcessEditor from '../src/index';
+import ProcessEditor from '../lib/index';
 import { Icon } from 'antd';
 
 // define functions of event listeners
