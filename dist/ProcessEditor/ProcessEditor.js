@@ -1,5 +1,5 @@
 "use strict";
-// src/ModelEditor/ModelEditor.tsx
+// src/ProcessEditor/ProcessEditor.tsx
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styles_1 = require("@material-ui/core/styles");
@@ -13,7 +13,7 @@ const styles = styles_1.createStyles({
         marginBottom: 20,
     },
 });
-class ModelEditor extends React.Component {
+class ProcessEditor extends React.Component {
     constructor() {
         super(...arguments);
         this.state = {};
@@ -27,5 +27,5 @@ class ModelEditor extends React.Component {
                 React.createElement(ProjectContainer_1.default, null))));
     }
 }
-exports.default = styles_1.withStyles(styles)(ModelEditor);
+exports.default = styles_1.withStyles(styles)(ProcessEditor);
 //# sourceMappingURL=ProcessEditor.js.map
