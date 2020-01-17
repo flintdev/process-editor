@@ -1,1 +1,0 @@
-{"version":3,"file":"reducer.js","sourceRoot":"","sources":["../../../../src/redux/modules/fieldPanel/reducer.ts"],"names":[],"mappings":";AAAA,0CAA0C;;AAM1C,SAAgB,OAAO,CAAC,KAAa,EAAE,MAAwB;IAC3D,QAAQ,MAAM,CAAC,IAAI,EAAE;QAEjB;YACI,OAAO,KAAK,CAAC;KACpB;AACL,CAAC;AAND,0BAMC"}

@@ -1,4 +1,4 @@
-// src/ModelEditor/ModelEditor.tsx
+// src/ProcessEditor/ProcessEditor.tsx
 
 import * as React from 'react';
 import {withStyles, WithStyles, createStyles} from '@material-ui/core/styles';
@@ -19,7 +19,7 @@ export interface Props extends WithStyles<typeof styles>, ProcessEditorProps {
 
 }
 
-class ModelEditor extends React.Component<Props, object> {
+class ProcessEditor extends React.Component<Props, object> {
     state = {};
 
     componentDidMount(): void {
@@ -38,4 +38,4 @@ class ModelEditor extends React.Component<Props, object> {
     }
 }
 
-export default withStyles(styles)(ModelEditor);
+export default withStyles(styles)(ProcessEditor);
