@@ -2,9 +2,9 @@
 
 import * as types from './types';
 import update from 'immutability-helper';
-import {ProjectAction} from "./actions";
+import {RootAction} from "./actions";
 
-export function reducer(state: object, action: ProjectAction) {
+export function reducer(state: object, action: RootAction) {
     switch (action.type) {
         case(types.SET_PROJECT_NAME):
             return update(state, {
@@ -15,4 +15,4 @@ export function reducer(state: object, action: ProjectAction) {
     }
 }
 
-export {ProjectAction};
+export {RootAction};

@@ -14,4 +14,4 @@ export function setProjectName(data: String): SetProjectName {
     }
 }
 
-export type ProjectAction = SetProjectName;
+export type RootAction = SetProjectName;
