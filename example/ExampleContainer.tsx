@@ -3,7 +3,7 @@
 import * as React from 'react';
 import {withStyles, WithStyles, createStyles} from '@material-ui/core/styles';
 import {data} from "./data";
-import ProcessEditor from "../dist/ProcessEditor";
+import ProcessEditor from "../src/ProcessEditor";
 
 const styles = createStyles({
     root: {

@@ -5,13 +5,11 @@ import {withStyles, WithStyles, createStyles} from '@material-ui/core/styles';
 import {Provider} from 'react-redux';
 import {store} from "../redux/store";
 import {ProcessEditorProps} from "../interface";
-import ProjectContainer from '../containers/ProjectContainer';
+import ProjectContainer from '../containers/RootContainer';
 
 const styles = createStyles({
     root: {
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 20,
+        
     },
 });
 
