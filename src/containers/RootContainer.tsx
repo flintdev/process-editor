@@ -4,12 +4,12 @@ import * as React from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
-import { StoreState, RootState } from "../redux/state";
+import { StoreState } from "../redux/state";
 import * as actions from "../redux/modules/root/actions";
-import Button from '@material-ui/core/Button';
 import LeftPaneContainer from '../components/LeftPane/LeftPaneContainer';
 import TopAppBar from '../components/TopAppBar';
 import { CssBaseline } from '@material-ui/core';
+import Editor from '../components/CenterBoard/Editor/Editor';
 
 const styles = createStyles({
     root: {
@@ -36,7 +36,7 @@ class RootContainer extends React.Component<Props, any> {
     render() {
         const { classes } = this.props;
         // const {projectName, setProjectName} = this.props.root;
-        console.log(1, this.props);
+        console.log(this.props);
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -49,7 +49,7 @@ class RootContainer extends React.Component<Props, any> {
                 {projectName} */}
                 <TopAppBar/>
                 <LeftPaneContainer>
-                    <div>rete</div>
+                    <Editor/>
                 </LeftPaneContainer>
             </React.Fragment>
         )
