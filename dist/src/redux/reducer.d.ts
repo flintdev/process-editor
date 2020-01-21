@@ -1,6 +1,6 @@
 import { StoreState } from "./state";
-import { ProjectAction } from "./modules/project/reducer";
-export declare type Action = ProjectAction;
+import { RootAction } from "./modules/root/reducer";
+export declare type Action = RootAction;
 export declare function reducer(state: StoreState, action: Action): {
-    project: object;
+    root: object;
 };

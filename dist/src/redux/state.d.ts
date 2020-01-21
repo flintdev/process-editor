@@ -1,8 +1,8 @@
-export interface ProjectState {
+export interface RootState {
     projectName: String;
     setProjectName?: ((data: String) => void);
 }
 export interface StoreState {
-    project: ProjectState;
+    root: RootState;
 }
 export declare const initState: StoreState;
