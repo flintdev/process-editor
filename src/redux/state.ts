@@ -1,16 +1,16 @@
 // redux/state.ts
 
-export interface ProjectState {
+export interface RootState {
     projectName: String,
     setProjectName?: ((data: String) => void)
 }
 
 export interface StoreState {
-    project: ProjectState,
+    root: RootState,
 }
 
 export const initState: StoreState = {
-    project: {
+    root: {
         projectName: "project-process-editor"
     },
 };

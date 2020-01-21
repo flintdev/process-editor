@@ -5,13 +5,11 @@ import {withStyles, WithStyles, createStyles} from '@material-ui/core/styles';
 import {Provider} from 'react-redux';
 import {store} from "../redux/store";
 import {ProcessEditorProps} from "../interface";
-import ProjectContainer from '../containers/ProjectContainer';
+import RootContainer from '../containers/RootContainer';
 
 const styles = createStyles({
     root: {
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 20,
+        
     },
 });
 
@@ -31,7 +29,7 @@ class ProcessEditor extends React.Component<Props, object> {
         return (
             <Provider store={store}>
                 <div className={classes.root}>
-                    <ProjectContainer/>
+                    <RootContainer/>
                 </div>
             </Provider>
         )

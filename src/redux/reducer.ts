@@ -1,12 +1,12 @@
 // src/redux/reducer.ts
 
 import {StoreState} from "./state";
-import {reducer as ProjectReducer, ProjectAction} from "./modules/project/reducer";
+import {reducer as RootReducer, RootAction} from "./modules/root/reducer";
 
-export type Action = ProjectAction;
+export type Action = RootAction;
 
 export function reducer(state: StoreState, action: Action) {
     return {
-        project: ProjectReducer(state.project, action),
+        root: RootReducer(state.root, action),
     }
 }
