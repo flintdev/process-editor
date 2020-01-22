@@ -8,20 +8,20 @@ class Editor extends React.Component<any, any> {
         super(props);
         this.state = {
             reteContainer: null,
-            focusEditor: () => {}
+            focusEditor: () => { }
         }
     }
 
     componentDidMount = () => {
-        const {initialData} = this.props;
-        this.setState({initialData: initialData});
+        const { initialData } = this.props;
+        this.setState({ initialData: initialData });
         const init = async (ref: HTMLDivElement, data: any, action: (editorConfig: any) => void) => {
-            const {focusEditor} = await createEditor(ref, data, action);
+            const { focusEditor } = await createEditor(ref, data, action);
             this.setState({ focusEditor: focusEditor });
         };
         const tmp = (
             <div
-                style={{ width: "100%", height: "100%" }}
+                style={{ width: "100%", height: "100%"}}
                 ref={ref =>
                     ref && init(ref, initialData, this.onChange)
                 }
@@ -38,11 +38,11 @@ class Editor extends React.Component<any, any> {
     };
 
     render() {
-        const {reteContainer} = this.state;
+        const { reteContainer } = this.state;
         return (
             <React.Fragment>
-                <IconButton onClick={() => this.state.focusEditor()} style={{float: 'right'}}>
-                    <CenterFocusStrongIcon/>
+                <IconButton onClick={() => this.state.focusEditor()} style={{ position: 'absolute' }}>
+                    <CenterFocusStrongIcon />
                 </IconButton>
                 {reteContainer}
             </React.Fragment>
