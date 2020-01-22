@@ -11,7 +11,7 @@ interface State {
     inputs: any[];
     selected: any[];
 }
-export declare class MyNode extends Node<Props, State> {
+export default class MyNode extends Node<Props, State> {
     props: Props;
     state: State;
     constructor(props: Props);

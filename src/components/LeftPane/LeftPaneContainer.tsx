@@ -57,16 +57,11 @@ const Wrapper: React.FunctionComponent<any> = styled.div`
 
 
 export default function LeftPaneContainer(props: any) {
-    const [size, setSize] = React.useState(`400px`);
+    const [size, setSize] = React.useState(400);
     const { children } = props;
 
-    const updateSize = (input: any) => {
-        // console.log('>>> size', input[0]);
-        setSize(input[0]);
-        // const maxHeight = 1000;
-        // const padding = 225;
-        // const btmPaneHeight = maxHeight - topPaneHeight - padding;
-        // this.setState({ btmHeight: btmPaneHeight + "px" });
+    const updateSize = (size: number) => {
+        setSize(size);
     };
 
     return (
@@ -80,7 +75,11 @@ export default function LeftPaneContainer(props: any) {
                 <div style={{ height: "100%", overflow: 'auto', width: size}}>
                     <CustomizedTreeView />
                 </div>
-                <div style={{ height: "100%", overflow: 'auto'}}>
+                <div style={{ height: "100%", overflow: 'auto',
+                    backgroundSize: `20px 20px`,
+                    backgroundImage: `linear-gradient(to right, #9dd7e4 1px, transparent 1px),linear-gradient(to bottom, #9dd7e4 1px, transparent 1px)`
+                }}>
+
                     {children}
                 </div>
             </SplitPane>
