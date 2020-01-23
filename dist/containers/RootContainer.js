@@ -25,12 +25,14 @@ class RootContainer extends React.Component {
     }
     render() {
         const { classes } = this.props;
+        const { operations, stepOptions, editorData, onSaved, stepDbClick } = this.props;
+        console.log(operations, stepOptions, editorData, onSaved, stepDbClick);
         // const {projectName, setProjectName} = this.props.root;
         console.log(this.props);
         return (React.createElement(React.Fragment, null,
             React.createElement(core_1.CssBaseline, null),
             React.createElement(TopAppBar_1.default, null),
-            React.createElement(LeftPaneContainer_1.default, null,
+            React.createElement(LeftPaneContainer_1.default, { stepOptions: stepOptions },
                 React.createElement(Editor_1.default, { initialData: initialData_1.initialData }))));
     }
 }

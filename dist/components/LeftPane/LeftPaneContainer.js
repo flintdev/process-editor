@@ -57,15 +57,15 @@ const Wrapper = styled_components_1.default.div `
 `;
 function LeftPaneContainer(props) {
     const [size, setSize] = React.useState(400);
-    const { children } = props;
+    const { children, stepOptions } = props;
     const updateSize = (size) => {
         setSize(size);
     };
     return (React.createElement(Wrapper, null,
-        React.createElement(react_split_pane_1.default, { onChange: size => updateSize(size), split: "vertical", defaultSize: size, style: { display: 'flex', flexDirection: 'row' } },
-            React.createElement("div", { style: { height: "100%", overflow: 'auto', width: size } },
-                React.createElement(CustomizedTreeView_1.default, null)),
-            React.createElement("div", { style: { height: "100%", overflow: 'auto',
+        React.createElement(react_split_pane_1.default, { onChange: size => updateSize(size), split: "vertical", defaultSize: size, style: { display: 'flex', flexDirection: 'row', height: "calc(100% - 64px)" } },
+            React.createElement("div", { style: { height: "100%", overflow: 'auto', width: size } }, !!stepOptions && React.createElement(CustomizedTreeView_1.default, { data: stepOptions })),
+            React.createElement("div", { style: {
+                    height: "100%", overflow: 'auto',
                     backgroundSize: `15px 15px`,
                     backgroundImage: `linear-gradient(to right, lightgrey 1px, transparent 1px),linear-gradient(to bottom, lightgrey 1px, transparent 1px)`
                 } }, children))));

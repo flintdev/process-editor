@@ -1,2 +1,12 @@
 /// <reference types="react" />
-export default function CustomizedTreeView(): JSX.Element;
+declare module 'csstype' {
+    interface Properties {
+        '--tree-view-color'?: string;
+        '--tree-view-bg-color'?: string;
+    }
+}
+interface Props {
+    data: any[];
+}
+export default function CustomizedTreeView(props: Props): JSX.Element;
+export {};
