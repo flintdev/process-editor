@@ -18,9 +18,10 @@ class ProcessEditor extends React.Component {
     }
     render() {
         const { classes } = this.props;
+        // const { operations, stepOptions, editorData, onSaved, stepDbClick } = this.props;
         return (React.createElement(react_redux_1.Provider, { store: store_1.store },
             React.createElement("div", { className: classes.root },
-                React.createElement(RootContainer_1.default, null))));
+                React.createElement(RootContainer_1.default, Object.assign({}, this.props)))));
     }
 }
 exports.default = styles_1.withStyles(styles)(ProcessEditor);
