@@ -57,32 +57,33 @@ const Wrapper: React.FunctionComponent<any> = styled.div`
 
 
 export default function LeftPaneContainer(props: any) {
-    const [size, setSize] = React.useState(400);
-    const { children } = props;
+  const [size, setSize] = React.useState(400);
+  const { children, stepOptions } = props;
 
-    const updateSize = (size: number) => {
-        setSize(size);
-    };
+  const updateSize = (size: number) => {
+    setSize(size);
+  };
 
-    return (
-        <Wrapper>
-            <SplitPane
-                onChange={size => updateSize(size)}
-                split="vertical"
-                defaultSize={size}
-                style={{ display: 'flex', flexDirection: 'row' }}
-            >
-                <div style={{ height: "100%", overflow: 'auto', width: size}}>
-                    <CustomizedTreeView />
-                </div>
-                <div style={{ height: "100%", overflow: 'auto',
-                    backgroundSize: `15px 15px`,
-                    backgroundImage: `linear-gradient(to right, lightgrey 1px, transparent 1px),linear-gradient(to bottom, lightgrey 1px, transparent 1px)`
-                }}>
+  return (
+    <Wrapper>
+      <SplitPane
+        onChange={size => updateSize(size)}
+        split="vertical"
+        defaultSize={size}
+        style={{ display: 'flex', flexDirection: 'row', height: "calc(100% - 64px)" }}
+      >
+        <div style={{ height: "100%", overflow: 'auto', width: size }}>
+          {!!stepOptions && <CustomizedTreeView data={stepOptions}/>}
+        </div>
+        <div style={{
+          height: "100%", overflow: 'auto',
+          backgroundSize: `15px 15px`,
+          backgroundImage: `linear-gradient(to right, lightgrey 1px, transparent 1px),linear-gradient(to bottom, lightgrey 1px, transparent 1px)`
+        }}>
 
-                    {children}
-                </div>
-            </SplitPane>
-        </Wrapper>
-    )
+          {children}
+        </div>
+      </SplitPane>
+    </Wrapper>
+  )
 };

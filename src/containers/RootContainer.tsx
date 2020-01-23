@@ -22,7 +22,11 @@ const styles = createStyles({
 });
 
 export interface Props extends WithStyles<typeof styles>, StoreState {
-
+    operations: any,
+    stepOptions: any,
+    editorData: any,
+    onSaved: any,
+    stepDbClick: any
 }
 
 class RootContainer extends React.Component<Props, any> {
@@ -36,6 +40,8 @@ class RootContainer extends React.Component<Props, any> {
 
     render() {
         const { classes } = this.props;
+        const { operations, stepOptions, editorData, onSaved, stepDbClick } = this.props;
+        console.log(operations, stepOptions, editorData, onSaved, stepDbClick)
         // const {projectName, setProjectName} = this.props.root;
         console.log(this.props);
         return (
@@ -49,7 +55,7 @@ class RootContainer extends React.Component<Props, any> {
                 </Button>
                 {projectName} */}
                 <TopAppBar/>
-                <LeftPaneContainer>
+                <LeftPaneContainer stepOptions={stepOptions}>
                     <Editor initialData={initialData}/>
                 </LeftPaneContainer>
             </React.Fragment>
