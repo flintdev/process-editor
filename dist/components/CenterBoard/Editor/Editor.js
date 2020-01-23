@@ -30,7 +30,7 @@ class Editor extends React.Component {
     render() {
         const { reteContainer } = this.state;
         return (React.createElement(React.Fragment, null,
-            React.createElement(IconButton_1.default, { onClick: () => this.state.focusEditor(), style: { float: 'right' } },
+            React.createElement(IconButton_1.default, { onClick: () => this.state.focusEditor(), style: { position: 'absolute' } },
                 React.createElement(CenterFocusStrong_1.default, null)),
             reteContainer));
     }
