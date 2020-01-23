@@ -10,7 +10,7 @@ const CustomSocket: React.FunctionComponent<any> = styled.div`
     .socket {
         border-radius: 0;
         background-color: orange;
-        background-image: url("src/static/images/arrow.png");
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z' stroke='white' fill='white' /></svg>");
         background-size: 100%
     }
 `
@@ -23,11 +23,12 @@ export default class CardComponentWidget extends Node<Props, State> {
     }
     render() {
         const { node, bindSocket, bindControl } = this.props;
+        const { label, type, group, category } = node.data;
         const { outputs, controls, inputs, selected } = this.state;
 
         return (
-            <div className={`node ${selected}`}>
-                <CardComponentContianer title={"Code Block"} type={"Automation"} name={"Validate Expense Items with some more text to create a long name for the card"}/>
+            <div className={`node ${selected}`} style={{borderRadius: 0, padding: 3}}>
+                <CardComponentContianer type={type} category={category} label={label}/>
                 {/* Outputs */}
                 {outputs.map(output => (
                     <div className="output" key={output.key} style={{ 
@@ -48,14 +49,14 @@ export default class CardComponentWidget extends Node<Props, State> {
                     </div>
                 ))}
                 {/* Controls */}
-                {controls.map(control => (
+                {/* {controls.map(control => (
                     <Control
                         className="control"
                         key={control.key}
                         control={control}
                         innerRef={bindControl}
                     />
-                ))}
+                ))} */}
                 {/* Inputs */}
                 {inputs.map(input => (
                     <div className="input" key={input.key} style={{ 
@@ -71,16 +72,14 @@ export default class CardComponentWidget extends Node<Props, State> {
                                 innerRef={bindSocket}
                             />
                         </CustomSocket>
-                        {!input.showControl() && (
-                            <div className="input-title" style={{ color: 'grey' }}>{input.name}</div>
-                        )}
-                        {input.showControl() && (
+                        <div className="input-title" style={{ color: 'grey' }}>{input.name}</div>
+                        {/* {input.showControl() && (
                             <Control
                                 className="input-control"
                                 control={input.control}
                                 innerRef={bindControl}
                             />
-                        )}
+                        )} */}
                     </div>
                 ))}
             </div>

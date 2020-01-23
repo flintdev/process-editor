@@ -76,8 +76,8 @@ export default function LeftPaneContainer(props: any) {
                     <CustomizedTreeView />
                 </div>
                 <div style={{ height: "100%", overflow: 'auto',
-                    backgroundSize: `20px 20px`,
-                    backgroundImage: `linear-gradient(to right, #9dd7e4 1px, transparent 1px),linear-gradient(to bottom, #9dd7e4 1px, transparent 1px)`
+                    backgroundSize: `15px 15px`,
+                    backgroundImage: `linear-gradient(to right, lightgrey 1px, transparent 1px),linear-gradient(to bottom, lightgrey 1px, transparent 1px)`
                 }}>
 
                     {children}

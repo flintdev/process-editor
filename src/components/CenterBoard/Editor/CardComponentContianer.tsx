@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
       maxWidth: 345,
+      minWidth: 345
     },
     media: {
       height: 0,
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function CardComponentContianer(props: { title: String, type: String, name: String}) {
+export default function CardComponentContianer(props: { type: String, category: String, label: String}) {
   const classes = useStyles({});
 
   return (
@@ -49,7 +50,7 @@ export default function CardComponentContianer(props: { title: String, type: Str
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.title[0].toLocaleUpperCase()}
+            {props.label[0].toLocaleUpperCase()}
           </Avatar>
         }
         action={
@@ -57,11 +58,11 @@ export default function CardComponentContianer(props: { title: String, type: Str
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.title}
-        subheader={props.type}
+        title={props.type}
+        subheader={props.category}
       />
       <CardContent style={{backgroundColor: '#ddd'}}>
-        <h2 style={{padding: 10, backgroundColor: `white`, textAlign: `center`}}>{props.name}</h2>
+        <h2 style={{padding: 10, backgroundColor: `white`, textAlign: `center`}}>{props.label}</h2>
       </CardContent>
     </Card>
   );
