@@ -10,6 +10,7 @@ import LeftPaneContainer from '../components/LeftPane/LeftPaneContainer';
 import TopAppBar from '../components/TopAppBar';
 import { CssBaseline } from '@material-ui/core';
 import Editor from '../components/CenterBoard/Editor/Editor';
+import {initialData} from "src/static/data/initialData";
 
 const styles = createStyles({
     root: {
@@ -49,7 +50,7 @@ class RootContainer extends React.Component<Props, any> {
                 {projectName} */}
                 <TopAppBar/>
                 <LeftPaneContainer>
-                    <Editor/>
+                    <Editor initialData={initialData}/>
                 </LeftPaneContainer>
             </React.Fragment>
         )

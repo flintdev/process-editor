@@ -28,5 +28,5 @@ class MyNode extends rete_index_1.Node {
                 input.showControl() && (React.createElement(rete_index_1.Control, { className: "input-control", control: input.control, innerRef: bindControl })))))));
     }
 }
-exports.MyNode = MyNode;
+exports.default = MyNode;
 //# sourceMappingURL=MyNode.js.map

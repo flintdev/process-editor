@@ -56,21 +56,19 @@ const Wrapper = styled_components_1.default.div `
     }
 `;
 function LeftPaneContainer(props) {
-    const [size, setSize] = React.useState(`400px`);
+    const [size, setSize] = React.useState(400);
     const { children } = props;
-    const updateSize = (input) => {
-        // console.log('>>> size', input[0]);
-        setSize(input[0]);
-        // const maxHeight = 1000;
-        // const padding = 225;
-        // const btmPaneHeight = maxHeight - topPaneHeight - padding;
-        // this.setState({ btmHeight: btmPaneHeight + "px" });
+    const updateSize = (size) => {
+        setSize(size);
     };
     return (React.createElement(Wrapper, null,
         React.createElement(react_split_pane_1.default, { onChange: size => updateSize(size), split: "vertical", defaultSize: size, style: { display: 'flex', flexDirection: 'row' } },
             React.createElement("div", { style: { height: "100%", overflow: 'auto', width: size } },
                 React.createElement(CustomizedTreeView_1.default, null)),
-            React.createElement("div", { style: { height: "100%", overflow: 'auto' } }, children))));
+            React.createElement("div", { style: { height: "100%", overflow: 'auto',
+                    backgroundSize: `15px 15px`,
+                    backgroundImage: `linear-gradient(to right, lightgrey 1px, transparent 1px),linear-gradient(to bottom, lightgrey 1px, transparent 1px)`
+                } }, children))));
 }
 exports.default = LeftPaneContainer;
 ;
