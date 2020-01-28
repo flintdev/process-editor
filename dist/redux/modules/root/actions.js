@@ -1,5 +1,5 @@
 "use strict";
-// src/redux/modules/default/actions.ts
+// src/redux/modules/root/actions.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 const types = require("./types");
 function setProjectName(data) {

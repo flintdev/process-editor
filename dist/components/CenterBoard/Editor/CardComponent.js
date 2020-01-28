@@ -26,7 +26,7 @@ class CardComponent extends rete_index_1.default.Component {
             .addOutput(out2);
     }
     worker(node, inputs, outputs) {
-        console.log(">>> worker", node);
+        // console.log(">>> worker", node)
         // var n1 = inputs["input1"].length ? inputs["input1"][0] : node.data.num1;
         // var sum = n1;
         // this.editor.nodes

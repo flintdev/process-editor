@@ -1,5 +1,5 @@
 "use strict";
-// src/redux/modules/fieldPanel/reducer.ts
+// src/redux/modules/root/reducer.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 const types = require("./types");
 const immutability_helper_1 = require("immutability-helper");

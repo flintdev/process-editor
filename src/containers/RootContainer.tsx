@@ -4,13 +4,12 @@ import * as React from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
-import { StoreState } from "../redux/state";
+import { StoreState, RootState } from "../redux/state";
 import * as actions from "../redux/modules/root/actions";
 import LeftPaneContainer from '../components/LeftPane/LeftPaneContainer';
 import TopAppBar from '../components/TopAppBar';
 import { CssBaseline } from '@material-ui/core';
 import Editor from '../components/CenterBoard/Editor/Editor';
-import {initialData} from "src/static/data/initialData";
 
 const styles = createStyles({
     root: {
@@ -21,12 +20,13 @@ const styles = createStyles({
     }
 });
 
-export interface Props extends WithStyles<typeof styles>, StoreState {
+export interface Props extends WithStyles<typeof styles>, RootState {
     operations: any,
     stepOptions: any,
     editorData: any,
     onSaved: any,
     stepDbClick: any
+    root?: any,
 }
 
 class RootContainer extends React.Component<Props, any> {
@@ -54,9 +54,9 @@ class RootContainer extends React.Component<Props, any> {
                         set project as time
                 </Button>
                 {projectName} */}
-                <TopAppBar/>
+                <TopAppBar onSaved={onSaved}/>
                 <LeftPaneContainer stepOptions={stepOptions}>
-                    <Editor initialData={initialData}/>
+                    <Editor initialData={editorData}/>
                 </LeftPaneContainer>
             </React.Fragment>
         )
@@ -64,7 +64,7 @@ class RootContainer extends React.Component<Props, any> {
 }
 
 const mapStateToProps = (state: StoreState) => {
-    return state;
+    return state.root;
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.RootAction>) => {

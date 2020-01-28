@@ -5,5 +5,8 @@ exports.initState = {
     root: {
         projectName: "project-process-editor"
     },
+    editor: {
+        editorJSON: {}
+    }
 };
 //# sourceMappingURL=state.js.map

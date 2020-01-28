@@ -4,6 +4,15 @@ const React = require("react");
 const ReteContoller_1 = require("./ReteContoller");
 const CenterFocusStrong_1 = require("@material-ui/icons/CenterFocusStrong");
 const IconButton_1 = require("@material-ui/core/IconButton");
+const styles_1 = require("@material-ui/core/styles");
+const react_redux_1 = require("react-redux");
+const actions = require("src/redux/modules/editor/actions");
+const styles = styles_1.createStyles({
+    root: {},
+    container: {
+        width: 300,
+    }
+});
 class Editor extends React.Component {
     constructor(props) {
         super(props);
@@ -19,6 +28,7 @@ class Editor extends React.Component {
         };
         this.onChange = (editorConfig) => {
             console.log("onChange: ", editorConfig);
+            this.props.setEditorJSON(editorConfig);
             //Uncomment this and we get in an infinite loop !!!!
             this.setState({ editorConfig });
         };
@@ -35,5 +45,13 @@ class Editor extends React.Component {
             reteContainer));
     }
 }
-exports.default = Editor;
+const mapStateToProps = (state) => {
+    return state;
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setEditorJSON: (data) => dispatch(actions.setEditorJSON(data)),
+    };
+};
+exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(styles_1.withStyles(styles)(Editor));
 //# sourceMappingURL=Editor.js.map

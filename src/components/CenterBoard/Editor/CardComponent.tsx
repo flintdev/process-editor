@@ -32,7 +32,7 @@ export default class CardComponent extends Rete.Component {
     }
 
     worker(node: any, inputs: { [x: string]: any[]; }, outputs: { [x: string]: any; }) {
-        console.log(">>> worker", node)
+        // console.log(">>> worker", node)
         // var n1 = inputs["input1"].length ? inputs["input1"][0] : node.data.num1;
         // var sum = n1;
 

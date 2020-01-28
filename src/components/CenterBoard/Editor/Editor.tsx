@@ -2,6 +2,20 @@ import * as React from "react";
 import { createEditor } from "./ReteContoller";
 import CenterFocusStrongIcon from '@material-ui/icons/CenterFocusStrong';
 import IconButton from '@material-ui/core/IconButton';
+import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { Dispatch } from "redux";
+import { StoreState } from "src/redux/state";
+import * as actions from "src/redux/modules/editor/actions";
+
+const styles = createStyles({
+    root: {
+
+    },
+    container: {
+        width: 300,
+    }
+});
 
 class Editor extends React.Component<any, any> {
     constructor(props: any) {
@@ -32,6 +46,7 @@ class Editor extends React.Component<any, any> {
 
     onChange = (editorConfig: any) => {
         console.log("onChange: ", editorConfig);
+        this.props.setEditorJSON(editorConfig);
 
         //Uncomment this and we get in an infinite loop !!!!
         this.setState({ editorConfig });
@@ -50,4 +65,14 @@ class Editor extends React.Component<any, any> {
     }
 }
 
-export default Editor;
+const mapStateToProps = (state: StoreState) => {
+    return state;
+};
+
+const mapDispatchToProps = (dispatch: Dispatch<actions.EditorAction>) => {
+    return {
+        setEditorJSON: (data: object) => dispatch(actions.setEditorJSON(data)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Editor));
