@@ -1,4 +1,4 @@
-// src/redux/modules/default/actions.ts
+// src/redux/modules/root/actions.ts
 
 import * as types from './types';
 
