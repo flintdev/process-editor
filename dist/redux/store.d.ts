@@ -1,5 +1,6 @@
 export declare const store: import("redux").Store<{
     root: object;
-}, import("./modules/root/actions").SetProjectName> & {
+    editor: object;
+}, import("./reducer").Action> & {
     dispatch: unknown;
 };

@@ -9,7 +9,6 @@ const LeftPaneContainer_1 = require("../components/LeftPane/LeftPaneContainer");
 const TopAppBar_1 = require("../components/TopAppBar");
 const core_1 = require("@material-ui/core");
 const Editor_1 = require("../components/CenterBoard/Editor/Editor");
-const initialData_1 = require("src/static/data/initialData");
 const styles = styles_1.createStyles({
     root: {},
     container: {
@@ -31,13 +30,13 @@ class RootContainer extends React.Component {
         console.log(this.props);
         return (React.createElement(React.Fragment, null,
             React.createElement(core_1.CssBaseline, null),
-            React.createElement(TopAppBar_1.default, null),
+            React.createElement(TopAppBar_1.default, { onSaved: onSaved }),
             React.createElement(LeftPaneContainer_1.default, { stepOptions: stepOptions },
-                React.createElement(Editor_1.default, { initialData: initialData_1.initialData }))));
+                React.createElement(Editor_1.default, { initialData: editorData }))));
     }
 }
 const mapStateToProps = (state) => {
-    return state;
+    return state.root;
 };
 const mapDispatchToProps = (dispatch) => {
     return {

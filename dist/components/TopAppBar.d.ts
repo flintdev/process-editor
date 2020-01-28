@@ -1,2 +1,4 @@
 /// <reference types="react" />
-export default function TopAppBar(): JSX.Element;
+declare function TopAppBar(props: any): JSX.Element;
+declare const _default: import("react-redux").ConnectedComponent<typeof TopAppBar, Pick<any, string | number | symbol>>;
+export default _default;
