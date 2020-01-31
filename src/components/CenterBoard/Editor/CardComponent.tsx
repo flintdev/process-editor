@@ -5,10 +5,13 @@ import CardComponentWidget from "./CardComponentWidget";
 
 export default class CardComponent extends Rete.Component {
     numSocket: any;
-    constructor(numSocket: any) {
-        super("Card");
+    constructor(numSocket: any, icon: any, type: string, category: string) {
+        super(type);
         this.numSocket = numSocket;
         this.data.component = CardComponentWidget; // optional
+        this.data.icon = icon;
+        this.data.type = type;
+        this.data.category = category;
     }
 
     builder(node: any, label="label", type="type", group="group", category="category") {
@@ -20,9 +23,10 @@ export default class CardComponent extends Rete.Component {
         // inp1.addControl(new NumControl(this.editor, "input1", node));
 
         node.data.label = node.data.label || label;
-        node.data.type = node.data.type || type;
+        node.data.icon = this.data.icon;
+        node.data.type = this.data.type;
         node.data.group = node.data.group || group;
-        node.data.category = node.data.category || category;
+        node.data.category = this.data.category;
         return node
             .addInput(inp1)
             // .addControl(new NumControl(this.editor, "output1", node, true))

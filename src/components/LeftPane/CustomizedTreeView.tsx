@@ -134,7 +134,8 @@ export default function CustomizedTreeView(props: Props) {
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
       {!!data && data.map((item, index) => {
-        return <StyledTreeItem 
+        return <StyledTreeItem
+          key={`CustomizedTreeView-${index}`}
           nodeId={index.toString()}
           labelText={item.type}
           labelIcon={item.icon}

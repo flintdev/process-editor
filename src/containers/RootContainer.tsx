@@ -56,7 +56,7 @@ class RootContainer extends React.Component<Props, any> {
                 {projectName} */}
                 <TopAppBar onSaved={onSaved}/>
                 <LeftPaneContainer stepOptions={stepOptions}>
-                    <Editor initialData={editorData}/>
+                    <Editor initialData={editorData} stepOptions={stepOptions}/>
                 </LeftPaneContainer>
             </React.Fragment>
         )

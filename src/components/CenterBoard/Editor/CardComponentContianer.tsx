@@ -8,13 +8,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import InputBase from '@material-ui/core/InputBase';
+import StepDialog from '../StepDialog/StepDialog';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function CardComponentContianer(props: { type: String, category: String, label: String}) {
+export default function CardComponentContianer(props: { type: String, category: String, label: String, icon: any}) {
   const classes = useStyles({});
 
   return (
@@ -50,19 +50,24 @@ export default function CardComponentContianer(props: { type: String, category: 
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.label[0].toLocaleUpperCase()}
+            {/* {props.label[0].toLocaleUpperCase()} */}
+            {props.icon}
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <StepDialog/>
         }
         title={props.type}
         subheader={props.category}
       />
       <CardContent style={{backgroundColor: '#ddd'}}>
-        <h2 style={{padding: 10, backgroundColor: `white`, textAlign: `center`}}>{props.label}</h2>
+        <InputBase
+          style={{padding: 10, backgroundColor: `white`, textAlign: `center`, width: '100%'}}
+          autoFocus={true}
+          defaultValue={props.label}
+          inputProps={{ 'aria-label': 'naked' }}
+        />
+        {/* <h2 style={{padding: 10, backgroundColor: `white`, textAlign: `center`}}>{props.label}</h2> */}
       </CardContent>
     </Card>
   );

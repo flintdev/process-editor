@@ -43,7 +43,7 @@ const stepOptions = [
         "icon": <HighlightOffTwoToneIcon />
     },
     {
-        "type": "thrid-party/Email",
+        "type": "Gmail",
         "group": "Third-party",
         "category": "Notification",
         "icon": <EmailTwoToneIcon />
