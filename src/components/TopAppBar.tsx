@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from "redux";
 import { StoreState } from "src/redux/state";
 import * as actions from "src/redux/modules/editor/actions";
+import StepManager from "src/utils/StepManager";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,8 +26,8 @@ function TopAppBar(props: any) {
   const classes = useStyles();
 
   const translateProcessData = (editorData: any) => {
-    const processData = editorData.nodes
-    return processData
+    const stepManager = new StepManager();
+    return stepManager.buildFromEditorData(editorData.nodes)
   }
 
   return (

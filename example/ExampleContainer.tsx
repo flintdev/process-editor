@@ -72,7 +72,7 @@ class ExampleContainer extends React.Component<Props, object> {
     // define functions of event listeners
     onSaved = (processData, editorData) => {
         console.log('>>> onSaved.processData', processData);
-        console.log('>>> onSaved.editorData', processData);
+        console.log('>>> onSaved.editorData', editorData);
     };
 
     updateStepData = (newStepData) => {
