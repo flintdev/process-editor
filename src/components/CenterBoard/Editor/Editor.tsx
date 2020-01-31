@@ -27,10 +27,10 @@ class Editor extends React.Component<any, any> {
     }
 
     componentDidMount = () => {
-        const { initialData } = this.props;
+        const { initialData, stepOptions } = this.props;
         this.setState({ initialData: initialData });
         const init = async (ref: HTMLDivElement, data: any, action: (editorConfig: any) => void) => {
-            const { focusEditor } = await createEditor(ref, data, action);
+            const { focusEditor } = await createEditor(ref, data, action, stepOptions);
             this.setState({ focusEditor: focusEditor });
         };
         const tmp = (

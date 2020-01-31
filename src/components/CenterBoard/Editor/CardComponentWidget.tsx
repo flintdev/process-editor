@@ -22,13 +22,13 @@ export default class CardComponentWidget extends Node<Props, State> {
         super(props);
     }
     render() {
-        const { node, bindSocket, bindControl } = this.props;
-        const { label, type, group, category } = node.data;
+        const { node, bindSocket, bindControl} = this.props;
+        const { label, type, group, category, icon } = node.data;
         const { outputs, controls, inputs, selected } = this.state;
-
+        console.log('>>> icon', icon);
         return (
             <div className={`node ${selected}`} style={{borderRadius: 0, padding: 3}}>
-                <CardComponentContianer type={type} category={category} label={label}/>
+                <CardComponentContianer type={type} category={category} label={label} icon={icon}/>
                 {/* Outputs */}
                 {outputs.map(output => (
                     <div className="output" key={output.key} style={{ 
