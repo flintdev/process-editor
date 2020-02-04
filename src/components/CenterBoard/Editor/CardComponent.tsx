@@ -1,42 +1,59 @@
 import * as React from "react";
 import Rete from "src/utils/rete-index";
-import NumControl from "./NumControl";
+import StrControl from "./StrControl";
 import CardComponentWidget from "./CardComponentWidget";
 
 export default class CardComponent extends Rete.Component {
     numSocket: any;
-    constructor(numSocket: any, icon: any, type: string, category: string) {
+    stepDbClick: any;
+    constructor(numSocket: any, icon: any, type: string, category: string, stepDbClick: any) {
         super(type);
         this.numSocket = numSocket;
+        this.data.stepDbClick = stepDbClick;
         this.data.component = CardComponentWidget; // optional
         this.data.icon = icon;
         this.data.type = type;
         this.data.category = category;
     }
 
-    builder(node: any, label="label", type="type", group="group", category="category") {
-        console.log(">>> builder")
+    builder(node: any, label = "label", type = "type", group = "group", category = "category") {
+        if (node.data.outputs) {
+            node.data.outputs.forEach((o: any) => {
+                node.addOutput(new Rete.Output(o.name, "Number", this.numSocket))
+            })
+        } else {
+            node.data.outputs = [{
+                "name": "output1",
+                "condition": {
+                  "key": "null",
+                  "operator": "always",
+                  "value": "null"
+                }
+              }]
+            node.addOutput(new Rete.Output('output1', "Number", this.numSocket))
+        }
         var inp1 = new Rete.Input("input1", "Number", this.numSocket);
-        var out1 = new Rete.Output("output1", "Number", this.numSocket);
-        var out2 = new Rete.Output("output2", "Number", this.numSocket);
 
-        // inp1.addControl(new NumControl(this.editor, "input1", node));
-
-        node.data.label = node.data.label || label;
+        node.data.stepDbClick = this.data.stepDbClick;
+        node.data.label = `${node.data.label || label}`;
+        node.data.code = `${node.data.code || ''}`;
         node.data.icon = this.data.icon;
         node.data.type = this.data.type;
         node.data.group = node.data.group || group;
         node.data.category = this.data.category;
-        return node
-            .addInput(inp1)
-            // .addControl(new NumControl(this.editor, "output1", node, true))
-            // .addControl(new NumControl(this.editor, "output2", node, true))
-            .addOutput(out1)
-            .addOutput(out2);
+        node.addInput(inp1);
+
+        return node;
     }
 
     worker(node: any, inputs: { [x: string]: any[]; }, outputs: { [x: string]: any; }) {
-        // console.log(">>> worker", node)
+        // console.log(">>> worker1", node)
+
+        // node.addOutput(new Rete.Output("output3", "Number", this.numSocket))
+        // this.node = node.addControl(new NumControl(this.editor, "preview2", node, true))
+
+
+
         // var n1 = inputs["input1"].length ? inputs["input1"][0] : node.data.num1;
         // var sum = n1;
 

@@ -10,8 +10,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { Control } from "src/utils/rete-index";
 
-export default function StepDialog() {
+export default function StepDialog(props: {controls: any[], bindControl: any}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => () => {
@@ -46,6 +47,14 @@ export default function StepDialog() {
                 ),
               }}
             />
+            {props.controls.map(control => (
+                    <Control
+                        className="control"
+                        key={control.key}
+                        control={control}
+                        innerRef={props.bindControl}
+                    />
+                ))}
           </div>
         </DialogContent>
         <DialogActions>

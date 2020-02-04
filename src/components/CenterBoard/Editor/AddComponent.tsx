@@ -1,7 +1,7 @@
 import * as React from "react";
 import Rete from "src/utils/rete-index";
 import NumControl from "./NumControl";
-import MyNode from "./MyNode";
+// import MyNode from "./MyNode";
 
 // var numSocket = new Rete.Socket("Number value");
 
@@ -10,7 +10,7 @@ export default class AddComponent extends Rete.Component {
     constructor(numSocket: any) {
         super("Add");
         this.numSocket = numSocket;
-        this.data.component = MyNode; // optional
+        // this.data.component = MyNode; // optional
     }
 
     builder(node: any) {

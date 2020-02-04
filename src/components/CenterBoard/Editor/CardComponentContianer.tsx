@@ -15,6 +15,9 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import InputBase from '@material-ui/core/InputBase';
 import StepDialog from '../StepDialog/StepDialog';
+import { Control } from "src/utils/rete-index";
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function CardComponentContianer(props: { type: String, category: String, label: String, icon: any}) {
+export default function CardComponentContianer(props: { data: any, type: String, category: String, label: String, icon: any, stepDbClick: any}) {
   const classes = useStyles({});
 
   return (
@@ -55,7 +58,9 @@ export default function CardComponentContianer(props: { type: String, category: 
           </Avatar>
         }
         action={
-          <StepDialog/>
+          <IconButton aria-label="settings" onClick={() => props.stepDbClick(props.data)}>
+            <MoreVertIcon />
+          </IconButton>
         }
         title={props.type}
         subheader={props.category}

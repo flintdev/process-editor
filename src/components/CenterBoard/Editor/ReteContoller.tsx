@@ -5,9 +5,9 @@ import NumComponent from "./NumComponent";
 import AddComponent from "./AddComponent";
 import CardComponent from "./CardComponent";
 
-export async function createEditor(container: HTMLDivElement, editorConfig: any, onChange: (editorConfig: any) => void, stepOptions: any[]) {
+export async function createEditor(container: HTMLDivElement, editorConfig: any, onChange: (editorConfig: any) => void, stepOptions: any[], stepDbClick: any) {
     var numSocket = new Rete.Socket("Number value");
-    var components = stepOptions.map(o => new CardComponent(numSocket, o.icon, o.type, o.category));
+    var components = stepOptions.map(o => new CardComponent(numSocket, o.icon, o.type, o.category, stepDbClick));
 
     var editor = new Rete.NodeEditor("editor@0.0.1", container);
     editor.use(ConnectionPlugin);
@@ -51,5 +51,10 @@ export async function createEditor(container: HTMLDivElement, editorConfig: any,
         AreaPlugin.zoomAt(editor, editor.nodes);
     };
 
-    return {focusEditor}
+    const reRender = async (json: any) => {
+        editor.fromJSON(json);
+    };
+
+
+    return {focusEditor, reRender}
 }

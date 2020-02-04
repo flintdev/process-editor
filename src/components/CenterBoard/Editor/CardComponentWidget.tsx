@@ -23,12 +23,15 @@ export default class CardComponentWidget extends Node<Props, State> {
     }
     render() {
         const { node, bindSocket, bindControl} = this.props;
-        const { label, type, group, category, icon } = node.data;
+        const { label, type, group, category, icon, stepDbClick } = node.data;
         const { outputs, controls, inputs, selected } = this.state;
-        console.log('>>> icon', icon);
+
         return (
             <div className={`node ${selected}`} style={{borderRadius: 0, padding: 3}}>
-                <CardComponentContianer type={type} category={category} label={label} icon={icon}/>
+                <CardComponentContianer 
+                    data={node.toJSON()}
+                    type={type} 
+                    category={category} label={label} icon={icon} stepDbClick={stepDbClick}/>
                 {/* Outputs */}
                 {outputs.map(output => (
                     <div className="output" key={output.key} style={{ 
@@ -45,7 +48,7 @@ export default class CardComponentWidget extends Node<Props, State> {
                                 innerRef={bindSocket}
                             />
                         </CustomSocket>
-                        <div className="output-title" style={{ color: 'grey' }}>{output.name}</div>
+                        <div className="output-title" style={{ color: 'grey' }}>{output.key}</div>
                     </div>
                 ))}
                 {/* Controls */}
@@ -72,14 +75,14 @@ export default class CardComponentWidget extends Node<Props, State> {
                                 innerRef={bindSocket}
                             />
                         </CustomSocket>
-                        <div className="input-title" style={{ color: 'grey' }}>{input.name}</div>
-                        {/* {input.showControl() && (
+                        <div className="input-title" style={{ color: 'grey' }}>{input.key}</div>
+                        {input.showControl() && (
                             <Control
                                 className="input-control"
                                 control={input.control}
                                 innerRef={bindControl}
                             />
-                        )} */}
+                        )}
                     </div>
                 ))}
             </div>

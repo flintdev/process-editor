@@ -34,16 +34,23 @@ class RootContainer extends React.Component<Props, any> {
 
     };
 
-    componentDidMount(): void {
+    editorActions: any = {};
 
+
+    updateStepData = (newStepData: any) => {
+        this.editorActions.handleRender(newStepData)
+    }
+
+    componentDidMount(): void {
+        this.props.operations.updateStepData = this.updateStepData;
     }
 
     render() {
         const { classes } = this.props;
         const { operations, stepOptions, editorData, onSaved, stepDbClick } = this.props;
-        console.log(operations, stepOptions, editorData, onSaved, stepDbClick)
+        // console.log(operations, stepOptions, editorData, onSaved, stepDbClick)
         // const {projectName, setProjectName} = this.props.root;
-        console.log(this.props);
+
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -54,9 +61,14 @@ class RootContainer extends React.Component<Props, any> {
                         set project as time
                 </Button>
                 {projectName} */}
-                <TopAppBar onSaved={onSaved}/>
+                <TopAppBar onSaved={onSaved} />
                 <LeftPaneContainer stepOptions={stepOptions}>
-                    <Editor initialData={editorData} stepOptions={stepOptions}/>
+                    <Editor
+                        initialData={editorData}
+                        stepOptions={stepOptions}
+                        stepDbClick={stepDbClick}
+                        editorActions={this.editorActions}
+                    />
                 </LeftPaneContainer>
             </React.Fragment>
         )
