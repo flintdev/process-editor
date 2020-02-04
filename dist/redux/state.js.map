@@ -1,1 +1,0 @@
-{"version":3,"file":"state.js","sourceRoot":"","sources":["../../src/redux/state.ts"],"names":[],"mappings":";AAAA,iBAAiB;;AAiBJ,QAAA,SAAS,GAAe;IACjC,IAAI,EAAE;QACF,WAAW,EAAE,wBAAwB;KACxC;IACD,MAAM,EAAE;QACJ,UAAU,EAAE,EAAE;KACjB;CACJ,CAAC"}
