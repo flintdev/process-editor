@@ -1,6 +1,4 @@
-import * as React from "react";
-import Rete from "src/utils/rete-index";
-import StrControl from "./StrControl";
+import Rete from "../../../utils/rete-index";
 import CardComponentWidget from "./CardComponentWidget";
 
 export default class CardComponent extends Rete.Component {
@@ -10,7 +8,7 @@ export default class CardComponent extends Rete.Component {
         super(type);
         this.numSocket = numSocket;
         this.data.stepDbClick = stepDbClick;
-        this.data.component = CardComponentWidget; // optional
+        this.data.component = CardComponentWidget;
         this.data.icon = icon;
         this.data.type = type;
         this.data.category = category;
@@ -37,6 +35,7 @@ export default class CardComponent extends Rete.Component {
         node.data.stepDbClick = this.data.stepDbClick;
         node.data.label = `${node.data.label || label}`;
         node.data.code = `${node.data.code || ''}`;
+
         node.data.icon = this.data.icon;
         node.data.type = this.data.type;
         node.data.group = node.data.group || group;
@@ -47,20 +46,6 @@ export default class CardComponent extends Rete.Component {
     }
 
     worker(node: any, inputs: { [x: string]: any[]; }, outputs: { [x: string]: any; }) {
-        // console.log(">>> worker1", node)
-
-        // node.addOutput(new Rete.Output("output3", "Number", this.numSocket))
-        // this.node = node.addControl(new NumControl(this.editor, "preview2", node, true))
-
-
-
-        // var n1 = inputs["input1"].length ? inputs["input1"][0] : node.data.num1;
-        // var sum = n1;
-
-        // this.editor.nodes
-        //     .find((n: { id: any; }) => n.id == node.id)
-        //     .controls.get("preview")
-        //     .setValue(sum);
-        // outputs["output1"] = sum;
+        
     }
 }

@@ -1,5 +1,3 @@
-// src/containers/ProjectContainer.tsx
-
 import * as React from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';

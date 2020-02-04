@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import { initialData } from "./data";
-import ProcessEditor from "../dist/ProcessEditor";
+import ProcessEditor from "../src/ProcessEditor";
 import CodeIcon from '@material-ui/icons/Code';
 import EmailTwoToneIcon from '@material-ui/icons/EmailTwoTone';
 import HighlightOffTwoToneIcon from '@material-ui/icons/HighlightOffTwoTone';

@@ -2,12 +2,11 @@ import * as React from "react";
 import { createEditor } from "./ReteContoller";
 import CenterFocusStrongIcon from '@material-ui/icons/CenterFocusStrong';
 import IconButton from '@material-ui/core/IconButton';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
-import { StoreState } from "src/redux/state";
-import * as actions from "src/redux/modules/editor/actions";
-import { Button } from "@material-ui/core";
+import { StoreState } from "../../../redux/state";
+import * as actions from "../../../redux/modules/editor/actions";
 
 const styles = createStyles({
     root: {
