@@ -1,8 +1,5 @@
-import * as React from "react";
-import Rete from "src/utils/rete-index";
-import {ReactRenderPlugin, ConnectionPlugin, ContextMenuPlugin, AreaPlugin} from "src/utils/rete-index";
-import NumComponent from "./NumComponent";
-import AddComponent from "./AddComponent";
+import Rete from "../../../utils/rete-index";
+import {ReactRenderPlugin, ConnectionPlugin, ContextMenuPlugin, AreaPlugin} from "../../../utils/rete-index";
 import CardComponent from "./CardComponent";
 
 export async function createEditor(container: HTMLDivElement, editorConfig: any, onChange: (editorConfig: any) => void, stepOptions: any[], stepDbClick: any) {

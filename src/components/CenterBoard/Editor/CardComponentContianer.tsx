@@ -1,21 +1,11 @@
 import * as React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import InputBase from '@material-ui/core/InputBase';
-import StepDialog from '../StepDialog/StepDialog';
-import { Control } from "src/utils/rete-index";
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
@@ -27,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       height: 0,
-      paddingTop: '56.25%', // 16:9
+      paddingTop: '56.25%',
     },
     expand: {
       transform: 'rotate(0deg)',
@@ -53,7 +43,6 @@ export default function CardComponentContianer(props: { data: any, type: String,
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {/* {props.label[0].toLocaleUpperCase()} */}
             {props.icon}
           </Avatar>
         }
@@ -67,12 +56,12 @@ export default function CardComponentContianer(props: { data: any, type: String,
       />
       <CardContent style={{backgroundColor: '#ddd'}}>
         <InputBase
+          disabled={true}
           style={{padding: 10, backgroundColor: `white`, textAlign: `center`, width: '100%'}}
           autoFocus={true}
           defaultValue={props.label}
           inputProps={{ 'aria-label': 'naked' }}
         />
-        {/* <h2 style={{padding: 10, backgroundColor: `white`, textAlign: `center`}}>{props.label}</h2> */}
       </CardContent>
     </Card>
   );

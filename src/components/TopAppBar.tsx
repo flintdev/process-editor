@@ -7,9 +7,9 @@ import UndoIcon from '@material-ui/icons/Undo';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
-import { StoreState } from "src/redux/state";
-import * as actions from "src/redux/modules/editor/actions";
-import StepManager from "src/utils/StepManager";
+import { StoreState } from "../redux/state";
+import * as actions from "../redux/modules/editor/actions";
+import StepManager from "../utils/StepManager";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

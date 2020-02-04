@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Node, Socket, Control } from "src/utils/rete-index";
+import { Node, Socket, Control } from "../../../utils/rete-index";
 import CardComponentContianer from "./CardComponentContianer";
 import styled from "styled-components";
 
