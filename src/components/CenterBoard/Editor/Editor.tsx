@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from "redux";
 import { StoreState } from "src/redux/state";
 import * as actions from "src/redux/modules/editor/actions";
+import { Button } from "@material-ui/core";
 
 const styles = createStyles({
     root: {
@@ -27,11 +28,12 @@ class Editor extends React.Component<any, any> {
     }
 
     componentDidMount = () => {
-        const { initialData, stepOptions } = this.props;
+        this.props.editorActions.handleRender = this.handleRender;
+        const { initialData, stepOptions, stepDbClick } = this.props;
         this.setState({ initialData: initialData });
         const init = async (ref: HTMLDivElement, data: any, action: (editorConfig: any) => void) => {
-            const { focusEditor } = await createEditor(ref, data, action, stepOptions);
-            this.setState({ focusEditor: focusEditor });
+            const { focusEditor, reRender } = await createEditor(ref, data, action, stepOptions, stepDbClick);
+            this.setState({ focusEditor: focusEditor, reRender: reRender });
         };
         const tmp = (
             <div
@@ -45,20 +47,33 @@ class Editor extends React.Component<any, any> {
     };
 
     onChange = (editorConfig: any) => {
-        console.log("onChange: ", editorConfig);
         this.props.setEditorJSON(editorConfig);
 
         //Uncomment this and we get in an infinite loop !!!!
         this.setState({ editorConfig });
     };
 
+    handleRender = (newStepData: any) => {
+
+        const newEditorConfig = {...this.props.editor.editorJSON};
+        // console.log('>>> this.props.editor.editorJSON', this.props.editor.editorJSON);
+        newEditorConfig.nodes[newStepData.id] = newStepData;
+        // this.props.setEditorJSON(newEditorConfig);
+        // console.log('>>> newEditorConfig', newEditorConfig)
+
+        this.state.reRender(newEditorConfig);
+    }
+
     render() {
         const { reteContainer } = this.state;
+
         return (
             <React.Fragment>
-                <IconButton onClick={() => this.state.focusEditor()} style={{ position: 'absolute' }}>
-                    <CenterFocusStrongIcon />
-                </IconButton>
+                <div style={{ position: 'absolute', display: 'flex' }}>
+                    <IconButton onClick={() => this.state.focusEditor()}>
+                        <CenterFocusStrongIcon />
+                    </IconButton>
+                </div>
                 {reteContainer}
             </React.Fragment>
         );

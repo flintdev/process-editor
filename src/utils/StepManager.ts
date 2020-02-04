@@ -41,14 +41,16 @@ export default class StepManager {
         const ret = {} as StepMap;
         for (let id in editorData) {
             const node = editorData[id];
+            const data = node.data;
             const step = new Step(
-                node.data as StepProps,
-                {code: "somecode", isAsync: false} as StepData,
+                {label:data.label, type:data.type, group:data.group, category:data.category} as StepProps,
+                {code: data.code, isAsync: false} as StepData,
                 Object.keys(node.outputs).reduce((ret: StepCondition[], outputKey: string) => {
+                    const condition = data.outputs.find((o:any) => o.name === outputKey).condition;
                     ret.push({
-                        key: outputKey,
-                        value: "somevalue",
-                        operator: "someoperator",
+                        key: condition.key,
+                        value: condition.value,
+                        operator: condition.operator,
                         stepLabels: node.outputs[outputKey].connections.map((connection: any) => 
                             editorData[connection.node].data.label
                         )
@@ -57,7 +59,6 @@ export default class StepManager {
                 }, []),
             )
             ret[node.data.label] = step;
-            console.log(step)
         }
         return ret;
         
