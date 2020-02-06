@@ -9,7 +9,7 @@ import RootContainer from '../containers/RootContainer';
 
 const styles = createStyles({
     root: {
-        
+        height: `100%`
     },
 });
 
@@ -30,7 +30,7 @@ class ProcessEditor extends React.Component<Props, object> {
 
     render() {
         const { classes } = this.props;
-        // const { operations, stepOptions, editorData, onSaved, stepDbClick } = this.props;
+
         return (
             <Provider store={store}>
                 <div className={classes.root}>

@@ -28,11 +28,13 @@ class Editor extends React.Component<any, any> {
 
     componentDidMount = () => {
         this.props.editorActions.handleRender = this.handleRender;
+        this.props.editorActions.handleDrop = this.handleDrop;
+        this.props.editorActions.handleCallAction = this.handleCallAction;
         const { initialData, stepOptions, stepDbClick } = this.props;
         this.setState({ initialData: initialData });
         const init = async (ref: HTMLDivElement, data: any, action: (editorConfig: any) => void) => {
-            const { focusEditor, reRender } = await createEditor(ref, data, action, stepOptions, stepDbClick);
-            this.setState({ focusEditor: focusEditor, reRender: reRender });
+            const { focusEditor, reRender, dropNode, callAction } = await createEditor(ref, data, action, stepOptions, stepDbClick);
+            this.setState({ focusEditor: focusEditor, reRender: reRender, dropNode: dropNode, callAction:callAction });
         };
         const tmp = (
             <div
@@ -63,12 +65,20 @@ class Editor extends React.Component<any, any> {
         this.state.reRender(newEditorConfig);
     }
 
+    handleDrop = (labelText: string) => {
+        this.state.dropNode(labelText);
+    }
+    
+    handleCallAction = (action: string) => {
+        this.state.callAction(action);
+    }
+
     render() {
         const { reteContainer } = this.state;
 
         return (
             <React.Fragment>
-                <div style={{ position: 'absolute', display: 'flex' }}>
+                <div style={{ position: 'absolute', display: 'flex', zIndex: 10000 }}>
                     <IconButton onClick={() => this.state.focusEditor()}>
                         <CenterFocusStrongIcon />
                     </IconButton>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import SplitPane from 'react-split-pane';
 import * as React from 'react';
 import CustomizedTreeView from './CustomizedTreeView';
 
@@ -60,30 +59,23 @@ export default function LeftPaneContainer(props: any) {
   const [size, setSize] = React.useState(400);
   const { children, stepOptions } = props;
 
-  const updateSize = (size: number) => {
-    setSize(size);
-  };
-
   return (
-    <Wrapper>
-      <SplitPane
-        onChange={size => updateSize(size)}
-        split="vertical"
-        defaultSize={size}
-        style={{ display: 'flex', flexDirection: 'row', height: "calc(100% - 64px)" }}
+      <div
+        style={{ display: 'flex', flexDirection: 'row', height: "calc(100% - 64px)"}}
       >
-        <div style={{ height: "100%", overflow: 'auto', width: size }}>
-          {!!stepOptions && <CustomizedTreeView data={stepOptions}/>}
+        <div style={{ height: "100%", width: size, padding: 10 }}>
+          {!!stepOptions && <CustomizedTreeView data={stepOptions} triggerDrop={props.triggerDrop}/>}
         </div>
         <div style={{
-          height: "100%", overflow: 'auto',
+          width: "100%",
+          height: "100%",
+          overflow: 'auto',
           backgroundSize: `15px 15px`,
           backgroundImage: `linear-gradient(to right, lightgrey 1px, transparent 1px),linear-gradient(to bottom, lightgrey 1px, transparent 1px)`
         }}>
 
           {children}
         </div>
-      </SplitPane>
-    </Wrapper>
+      </div>
   )
 };
