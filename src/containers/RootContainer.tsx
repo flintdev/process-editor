@@ -39,28 +39,29 @@ class RootContainer extends React.Component<Props, any> {
         this.editorActions.handleRender(newStepData)
     }
 
+    triggerDrop = (labelText: string) => {
+        this.editorActions.handleDrop(labelText)
+    }
+
+    callAction = (action: string) => {
+        this.editorActions.handleCallAction(action)
+    }
+
+
+
     componentDidMount(): void {
         this.props.operations.updateStepData = this.updateStepData;
     }
 
     render() {
         const { classes } = this.props;
-        const { operations, stepOptions, editorData, onSaved, stepDbClick } = this.props;
-        // console.log(operations, stepOptions, editorData, onSaved, stepDbClick)
-        // const {projectName, setProjectName} = this.props.root;
+        const { stepOptions, editorData, onSaved, stepDbClick } = this.props;
 
         return (
             <React.Fragment>
                 <CssBaseline />
-                {/* <Button
-                    variant="contained"
-                    color={"primary"}
-                    onClick={() => setProjectName && setProjectName(new Date().getTime().toString())}>
-                        set project as time
-                </Button>
-                {projectName} */}
-                <TopAppBar onSaved={onSaved} />
-                <LeftPaneContainer stepOptions={stepOptions}>
+                <TopAppBar onSaved={onSaved} callAction={this.callAction}/>
+                <LeftPaneContainer stepOptions={stepOptions} triggerDrop={this.triggerDrop}>
                     <Editor
                         initialData={editorData}
                         stepOptions={stepOptions}

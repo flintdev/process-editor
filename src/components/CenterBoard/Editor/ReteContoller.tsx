@@ -1,5 +1,5 @@
 import Rete from "../../../utils/rete-index";
-import {ReactRenderPlugin, ConnectionPlugin, ContextMenuPlugin, AreaPlugin} from "../../../utils/rete-index";
+import {ReactRenderPlugin, ConnectionPlugin, ContextMenuPlugin, AreaPlugin, HistoryPlugin} from "../../../utils/rete-index";
 import CardComponent from "./CardComponent";
 
 export async function createEditor(container: HTMLDivElement, editorConfig: any, onChange: (editorConfig: any) => void, stepOptions: any[], stepDbClick: any) {
@@ -10,6 +10,7 @@ export async function createEditor(container: HTMLDivElement, editorConfig: any,
     editor.use(ConnectionPlugin);
     editor.use(ReactRenderPlugin);
     editor.use(ContextMenuPlugin);
+    editor.use(HistoryPlugin, { keyboard: true });
 
 
     var engine = new Rete.Engine("editor@0.0.1");
@@ -24,19 +25,15 @@ export async function createEditor(container: HTMLDivElement, editorConfig: any,
     editor.on(
         ["process", "nodecreated", "noderemoved", "connectioncreated", "connectionremoved"],
         async (e) => {
-            onChange(editor.toJSON());
+            const json = editor.toJSON();
+            onChange(json);
             await engine.abort();
-            await engine.process(editor.toJSON());
             if (needPositionFlag) {
                 focusEditor();
                 needPositionFlag = false;
             }
         }
     );
-
-    editor.view.resize();
-    editor.trigger("process");
-    AreaPlugin.zoomAt(editor, editor.nodes);
 
     //Load up the initial config
     if (editorConfig) {
@@ -52,6 +49,22 @@ export async function createEditor(container: HTMLDivElement, editorConfig: any,
         editor.fromJSON(json);
     };
 
+    const callAction = async (action: string) => {
+        // @ts-ignore
+        editor.trigger(action);
+    };
 
-    return {focusEditor, reRender}
+    const dropNode = async (labelText: string) => {
+        const {x, y} = editor.view.area.mouse;
+        const targetComponent = components.filter((o:any) => o.name === labelText)[0];
+        if (targetComponent) {
+            const n1 = await components.filter((o:any) => o.name === labelText)[0].createNode();
+            n1.position = [x, y];
+            editor.addNode(n1);
+        }
+
+    };
+
+
+    return {focusEditor, reRender, dropNode, callAction}
 }
