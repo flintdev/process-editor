@@ -34,6 +34,7 @@ function TopAppBar(props: any) {
     <div className={classes.grow}>
         <Toolbar style={{border: `1px solid gray`}}>
           <IconButton
+            onClick={() => props.callAction('undo')}
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -42,6 +43,7 @@ function TopAppBar(props: any) {
             <UndoIcon />
           </IconButton>
           <IconButton
+            onClick={() => props.callAction('redo')}
             edge="start"
             className={classes.menuButton}
             color="inherit"

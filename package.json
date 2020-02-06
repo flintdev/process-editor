@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "react-split-pane": "^0.1.89",
+    "react-draggable": "4.2.0",
     "react-spring": "^8.0.27",
     "react-style-proptype": "^3.2.2",
     "regenerator-runtime": "^0.13.3",
@@ -74,6 +74,7 @@
     "rete-cli": "^0.6.0",
     "rete-connection-plugin": "0.8.3-rc.1",
     "rete-context-menu-plugin": "0.3.7",
+    "rete-history-plugin": "^0.2.1",
     "rete-react-render-plugin": "^0.2.0",
     "styled-components": "^5.0.0"
   },
