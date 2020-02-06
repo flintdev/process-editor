@@ -60,8 +60,8 @@ export const initialData = {
         }
       },
       "position": [
-        -987.2137307722923,
-        -562.5988348021511
+        0,
+        0
       ],
       "name": "Object Add"
     },
@@ -130,8 +130,8 @@ export const initialData = {
         }
       },
       "position": [
-        -529.3032781444431,
-        -551.486740855765
+        500,
+        0
       ],
       "name": "Script"
     },
@@ -194,8 +194,8 @@ export const initialData = {
         }
       },
       "position": [
-        -78.91586149104691,
-        -563.0828912651829
+        1000,
+        0
       ],
       "name": "Gmail"
     }

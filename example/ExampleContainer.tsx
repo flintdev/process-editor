@@ -17,7 +17,7 @@ const stepOptions = [
         "type": "Script",
         "group": "Standard",
         "category": "Automation",
-        "icon": <CodeIcon />
+        "icon": <CodeIcon/>
     },
     {
         "type": "Approve/Reject",
@@ -92,13 +92,15 @@ class ExampleContainer extends React.Component<Props, object> {
             <div className={classes.root}>
                 {/* place the react component under any container */}
                 <StepDialog actions={this.actions} stepDbClickUpdate={this.stepDbClickUpdate}/>
-                <ProcessEditor
-                    operations={this.operations}
-                    stepOptions={stepOptions}
-                    editorData={initialData}
-                    onSaved={this.onSaved}
-                    stepDbClick={this.stepDbClick}
-                />
+                <div style={{height: '100vh'}}>
+                    <ProcessEditor
+                        operations={this.operations}
+                        stepOptions={stepOptions}
+                        editorData={initialData}
+                        onSaved={this.onSaved}
+                        stepDbClick={this.stepDbClick}
+                    />
+                </div>
             </div>
         )
     }
