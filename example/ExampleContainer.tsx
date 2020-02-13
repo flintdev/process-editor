@@ -11,8 +11,15 @@ import AssignmentTurnedInTwoToneIcon from '@material-ui/icons/AssignmentTurnedIn
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import NewReleasesTwoToneIcon from '@material-ui/icons/NewReleasesTwoTone';
 import StepDialog from "./StepDialog";
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 const stepOptions = [
+    {
+        "type": "End",
+        "group": "Standard",
+        "category": "Automation",
+        "icon": <RadioButtonCheckedIcon/>
+    },
     {
         "type": "Script",
         "group": "Standard",
