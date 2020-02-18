@@ -1,3 +1,5 @@
+import { EditorData, EditorNode } from "../index";
+
 interface StepData {
     code: String
     isAsync: Boolean
@@ -35,6 +37,24 @@ class Step {
 export default class StepManager {
     constructor() {
 
+    }
+
+    cleanStepData(node: any) {
+        const {data} = node;
+        const {label, type, group, category,code, outputs} = data;
+        return {...node, data: {label, type, group, category,code, outputs}} as EditorNode;
+    }
+
+    cleanEditorData(editorData: EditorData) {
+        const cleanData = {} as EditorData;
+        cleanData.id = editorData.id;
+        cleanData.nodes = Object.values(editorData.nodes).reduce((ret: any, node: EditorNode) => {
+            const {id, data} = node;
+            const {label, type, group, category,code, outputs} = data;
+            ret[id] = {...node, data: {label, type, group, category,code, outputs}} as EditorNode;
+            return ret;
+        }, {});
+        return cleanData;
     }
 
     buildFromEditorData(editorData: any) {
