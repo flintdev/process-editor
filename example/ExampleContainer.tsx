@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import { initialData } from "./data";
-import ProcessEditor from "../src/ProcessEditor";
+import {ProcessEditor} from "../src/index";
 import CodeIcon from '@material-ui/icons/Code';
 import EmailTwoToneIcon from '@material-ui/icons/EmailTwoTone';
 import HighlightOffTwoToneIcon from '@material-ui/icons/HighlightOffTwoTone';
@@ -12,6 +12,7 @@ import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import NewReleasesTwoToneIcon from '@material-ui/icons/NewReleasesTwoTone';
 import StepDialog from "./StepDialog";
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import {EditorData} from "../src/index"
 
 const stepOptions = [
     {
@@ -74,10 +75,13 @@ class ExampleContainer extends React.Component<Props, object> {
     };
 
     // define functions of event listeners
-    onSaved = (processData: any, editorData: any) => {
-        console.log('>>> onSaved.processData', processData);
+    onSaved = (editorData: EditorData) => {
         console.log('>>> onSaved.editorData', editorData);
     };
+
+    onClose = () => {
+        console.log('>>> onClose');
+    }
 
     // process some async actions to fetch input params and append it to stepData
     stepDbClick = (stepData: any) => {
@@ -105,6 +109,7 @@ class ExampleContainer extends React.Component<Props, object> {
                         stepOptions={stepOptions}
                         editorData={initialData}
                         onSaved={this.onSaved}
+                        onClose={this.onClose}
                         stepDbClick={this.stepDbClick}
                     />
                 </div>
