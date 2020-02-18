@@ -18,6 +18,7 @@ export interface Props extends WithStyles<typeof styles>, ProcessEditorProps {
     stepOptions: any,
     editorData: any,
     onSaved: any,
+    onClose: any,
     stepDbClick: any
 }
 

@@ -4,7 +4,7 @@ import CardComponent from "./CardComponent";
 
 export async function createEditor(container: HTMLDivElement, editorConfig: any, onChange: (editorConfig: any) => void, stepOptions: any[], stepDbClick: any) {
     var numSocket = new Rete.Socket("Number value");
-    var components = stepOptions.map(o => new CardComponent(numSocket, o.icon, o.type, o.category, stepDbClick));
+    var components = stepOptions.map(o => new CardComponent(numSocket, o.icon, o.type, o.category, o.group, stepDbClick));
 
     var editor = new Rete.NodeEditor("editor@0.0.1", container);
     editor.use(ConnectionPlugin);

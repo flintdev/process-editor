@@ -8,6 +8,7 @@ import { red } from '@material-ui/core/colors';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import StepManager from '../../../utils/StepManager';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -47,7 +48,7 @@ export default function CardComponentContianer(props: { data: any, type: String,
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings" onClick={() => props.stepDbClick(props.data)}>
+          <IconButton aria-label="settings" onClick={() => props.stepDbClick(new StepManager().cleanStepData(props.data))}>
             <MoreVertIcon />
           </IconButton>
         }

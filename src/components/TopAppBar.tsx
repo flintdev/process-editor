@@ -25,11 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
 function TopAppBar(props: any) {
   const classes = useStyles();
 
-  const translateProcessData = (editorData: any) => {
-    const stepManager = new StepManager();
-    return stepManager.buildFromEditorData(editorData.nodes)
-  }
-
   return (
     <div className={classes.grow}>
         <Toolbar style={{border: `1px solid gray`}}>
@@ -52,8 +47,11 @@ function TopAppBar(props: any) {
             <RedoIcon />
           </IconButton>
           <div className={classes.grow} />
-          <Button variant="contained" color="primary" onClick={() => props.onSaved(translateProcessData(props.editor.editorJSON), props.editor.editorJSON)}>
+          <Button className={classes.menuButton} variant="contained" color="primary" onClick={() => props.onSaved(new StepManager().cleanEditorData(props.editor.editorJSON))}>
             Save
+          </Button>
+          <Button className={classes.menuButton} variant="text" color="primary" onClick={props.onClose}>
+            Close
           </Button>
         </Toolbar>
     </div>

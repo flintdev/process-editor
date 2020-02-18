@@ -1,20 +1,22 @@
 import Rete from "../../../utils/rete-index";
 import CardComponentWidget from "./CardComponentWidget";
+import EndComponentWidget from "./EndComponentWidget";
 
 export default class CardComponent extends Rete.Component {
     numSocket: any;
     stepDbClick: any;
-    constructor(numSocket: any, icon: any, type: string, category: string, stepDbClick: any) {
+    constructor(numSocket: any, icon: any, type: string, category: string, group: string, stepDbClick: any) {
         super(type);
         this.numSocket = numSocket;
         this.data.stepDbClick = stepDbClick;
-        this.data.component = CardComponentWidget;
+        this.data.component = type === 'End' ? EndComponentWidget : CardComponentWidget;
         this.data.icon = icon;
         this.data.type = type;
+        this.data.group = group;
         this.data.category = category;
     }
 
-    builder(node: any, label = "label", type = "type", group = "group", category = "category") {
+    builder(node: any, label = "label") {
         if (this.data.type !== 'End') {
             if (node.data.outputs) {
                 node.data.outputs.forEach((o: any) => {
@@ -40,7 +42,7 @@ export default class CardComponent extends Rete.Component {
 
         node.data.icon = this.data.icon;
         node.data.type = this.data.type;
-        node.data.group = node.data.group || group;
+        node.data.group = this.data.group;
         node.data.category = this.data.category;
         node.addInput(inp1);
 
