@@ -23,6 +23,7 @@ export interface Props extends WithStyles<typeof styles>, RootState {
     stepOptions: any,
     editorData: any,
     onSaved: any,
+    onClose: any,
     stepDbClick: any
     root?: any,
 }
@@ -47,20 +48,18 @@ class RootContainer extends React.Component<Props, any> {
         this.editorActions.handleCallAction(action)
     }
 
-
-
     componentDidMount(): void {
         this.props.operations.updateStepData = this.updateStepData;
     }
 
     render() {
         const { classes } = this.props;
-        const { stepOptions, editorData, onSaved, stepDbClick } = this.props;
+        const { stepOptions, editorData, onSaved, onClose, stepDbClick } = this.props;
 
         return (
             <React.Fragment>
                 <CssBaseline />
-                <TopAppBar onSaved={onSaved} callAction={this.callAction}/>
+                <TopAppBar onSaved={onSaved} callAction={this.callAction} onClose={onClose}/>
                 <LeftPaneContainer stepOptions={stepOptions} triggerDrop={this.triggerDrop}>
                     <Editor
                         initialData={editorData}
