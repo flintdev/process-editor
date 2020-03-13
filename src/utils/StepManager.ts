@@ -41,8 +41,8 @@ export default class StepManager {
 
     cleanStepData(node: any) {
         const {data} = node;
-        const {label, type, group, category,code, outputs} = data;
-        return {...node, data: {label, type, group, category,code, outputs}} as EditorNode;
+        const {label, type, group, category,code, outputs, inputs} = data;
+        return {...node, data: {label, type, group, category,code, outputs, inputs}} as EditorNode;
     }
 
     cleanEditorData(editorData: EditorData) {
