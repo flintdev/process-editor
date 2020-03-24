@@ -28,23 +28,30 @@ export default class CardComponent extends Rete.Component {
     }
 
     builder(node: any) {
-        switch(this.data.type) {
-            case "End":
-                node.data.inputs = [{"multiConns": true, "name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
-                node.data.outputs = []
-                break;
-            case "Hub":
-                node.data.inputs = node.data.inputs || [{"name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
-                node.data.outputs = [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
-                break;
-            case "Trigger":
-                node.data.inputs = []
-                node.data.outputs = [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
-                break;
-            default:
-                node.data.inputs = [{"name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
-                node.data.outputs = [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+
+        console.log('>>> type', this.data.type)
+        if (this.data.category === "Trigger") {
+            node.data.inputs = []
+            node.data.outputs = node.data.outputs || [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]    
+        } else {
+            switch(this.data.type) {
+                case "End":
+                    node.data.inputs = [{"multiConns": true, "name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+                    node.data.outputs = []
+                    break;
+                case "Hub":
+                    node.data.inputs = node.data.inputs || [
+                        {"name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}},
+                        {"name": "input2", "condition": { "key": "null", "operator": "always", "value": "null"}}
+                    ]
+                    node.data.outputs = [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+                    break;
+                default:
+                    node.data.inputs = [{"name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+                    node.data.outputs = node.data.outputs || [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+            }
         }
+    
         node = this.helperIO(node.data.inputs, node.data.outputs, node)
 
         node.data.stepDbClick = this.data.stepDbClick;

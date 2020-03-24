@@ -31,6 +31,7 @@ interface EditorNode {
         category: string
         code: string,
         outputs: Array<EditorNodeOutput>
+        inputs?: Array<EditorNodeOutput>
     }
 }
 
