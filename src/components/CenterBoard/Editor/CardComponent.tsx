@@ -12,44 +12,61 @@ export default class CardComponent extends Rete.Component {
         this.data.component = type === 'End' ? EndComponentWidget : CardComponentWidget;
         this.data.icon = icon;
         this.data.type = type;
+        this.data.label = type;
         this.data.group = group;
         this.data.category = category;
     }
 
-    builder(node: any, label = "label") {
-        if (this.data.type !== 'End') {
-            if (node.data.outputs) {
-                node.data.outputs.forEach((o: any) => {
-                    node.addOutput(new Rete.Output(o.name, "Number", this.numSocket))
-                })
-            } else {
-                node.data.outputs = [{
-                    "name": "output1",
-                    "condition": {
-                      "key": "null",
-                      "operator": "always",
-                      "value": "null"
-                    }
-                  }]
-                node.addOutput(new Rete.Output('output1', "Number", this.numSocket))
+    helperIO(inputs: any[], outputs: any[], node: any) {
+        outputs.forEach((o: any) => {
+            node.addOutput(new Rete.Output(o.name, "Number", this.numSocket, o.multiConns))
+        })
+        inputs.forEach((o: any) => {
+            node.addInput(new Rete.Input(o.name, "Number", this.numSocket, o.multiConns))
+        })
+        return node
+    }
+
+    builder(node: any) {
+
+        console.log('>>> type', this.data.type)
+        if (this.data.category === "Trigger") {
+            node.data.inputs = []
+            node.data.outputs = node.data.outputs || [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]    
+        } else {
+            switch(this.data.type) {
+                case "End":
+                    node.data.inputs = [{"multiConns": true, "name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+                    node.data.outputs = []
+                    break;
+                case "Hub":
+                    node.data.inputs = node.data.inputs || [
+                        {"name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}},
+                        {"name": "input2", "condition": { "key": "null", "operator": "always", "value": "null"}}
+                    ]
+                    node.data.outputs = [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+                    break;
+                default:
+                    node.data.inputs = [{"name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+                    node.data.outputs = node.data.outputs || [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
             }
         }
-        var inp1 = new Rete.Input("input1", "Number", this.numSocket, this.data.type === 'End');
+    
+        node = this.helperIO(node.data.inputs, node.data.outputs, node)
 
         node.data.stepDbClick = this.data.stepDbClick;
-        node.data.label = `${node.data.label || label}`;
+        node.data.label = `${node.data.label || this.data.label}`;
         node.data.code = `${node.data.code || ''}`;
 
         node.data.icon = this.data.icon;
         node.data.type = this.data.type;
         node.data.group = this.data.group;
         node.data.category = this.data.category;
-        node.addInput(inp1);
 
         return node;
     }
 
     worker(node: any, inputs: { [x: string]: any[]; }, outputs: { [x: string]: any; }) {
-        
+
     }
 }

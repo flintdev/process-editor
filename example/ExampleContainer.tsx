@@ -13,6 +13,7 @@ import NewReleasesTwoToneIcon from '@material-ui/icons/NewReleasesTwoTone';
 import StepDialog from "./StepDialog";
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import {EditorData} from "../src/index"
+import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 
 const stepOptions = [
     {
@@ -20,6 +21,12 @@ const stepOptions = [
         "group": "Standard",
         "category": "Automation",
         "icon": <RadioButtonCheckedIcon/>
+    },
+    {
+        "type": "Trigger",
+        "group": "Standard",
+        "category": "Automation",
+        "icon": <CodeIcon/>
     },
     {
         "type": "Script",
@@ -56,6 +63,12 @@ const stepOptions = [
         "group": "Third-party",
         "category": "Notification",
         "icon": <EmailTwoToneIcon />
+    },
+    {
+        "type": "Hub",
+        "group": "Standard",
+        "category": "Automation",
+        "icon": <DeviceHubIcon />
     }
 ];
 

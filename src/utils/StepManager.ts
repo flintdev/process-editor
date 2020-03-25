@@ -41,8 +41,9 @@ export default class StepManager {
 
     cleanStepData(node: any) {
         const {data} = node;
-        const {label, type, group, category,code, outputs} = data;
-        return {...node, data: {label, type, group, category,code, outputs}} as EditorNode;
+        const {label, type, group, category, code, outputs, inputs} = data;
+        const cleanInputs = type == "Hub" ? {inputs} : {};
+        return {...node, data: {label, type, group, category,code, outputs, ...cleanInputs}} as EditorNode;
     }
 
     cleanEditorData(editorData: EditorData) {
@@ -50,8 +51,9 @@ export default class StepManager {
         cleanData.id = editorData.id;
         cleanData.nodes = Object.values(editorData.nodes).reduce((ret: any, node: EditorNode) => {
             const {id, data} = node;
-            const {label, type, group, category,code, outputs} = data;
-            ret[id] = {...node, data: {label, type, group, category,code, outputs}} as EditorNode;
+            const {label, type, group, category,code, outputs, inputs} = data;
+            const cleanInputs = type == "Hub" ? {inputs} : {};
+            ret[id] = {...node, data: {label, type, group, category,code, outputs, ...cleanInputs}} as EditorNode;
             return ret;
         }, {});
         return cleanData;
