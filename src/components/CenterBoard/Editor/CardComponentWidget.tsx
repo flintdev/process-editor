@@ -9,6 +9,7 @@ interface State { outputs: any[]; controls: any[]; inputs: any[]; selected: any[
 const CustomSocket: React.FunctionComponent<any> = styled.div`
     .socket {
         border-radius: 0;
+        border-color: steelblue;
         background-color: orange;
         background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z' stroke='white' fill='white' /></svg>");
         background-size: 100%
@@ -34,7 +35,7 @@ export default class CardComponentWidget extends Node<Props, State> {
                     category={category} label={label} icon={icon} stepDbClick={stepDbClick}/>
                 {/* Outputs */}
                 {outputs.map(output => (
-                    <div className="output" key={output.key} style={{ 
+                    <div key={output.key} style={{ 
                         backgroundColor: '#FDFABE',
                         borderTop: `1px solid #ccc`,
                         display: 'flex',
@@ -48,7 +49,7 @@ export default class CardComponentWidget extends Node<Props, State> {
                                 innerRef={bindSocket}
                             />
                         </CustomSocket>
-                        <div className="output-title" style={{ color: 'grey' }}>{output.key}</div>
+                        <div style={{ color: 'black', fontSize: 20 }}>{output.key}</div>
                     </div>
                 ))}
                 {/* Controls */}
@@ -62,7 +63,7 @@ export default class CardComponentWidget extends Node<Props, State> {
                 ))} */}
                 {/* Inputs */}
                 {inputs.map(input => (
-                    <div className="input" key={input.key} style={{ 
+                    <div key={input.key} style={{ 
                         backgroundColor: '#FDFABE',
                         borderTop: `1px solid #ccc`,
                         display: 'flex'
@@ -75,7 +76,7 @@ export default class CardComponentWidget extends Node<Props, State> {
                                 innerRef={bindSocket}
                             />
                         </CustomSocket>
-                        <div className="input-title" style={{ color: 'grey' }}>{input.key}</div>
+                        <div style={{ color: 'black', fontSize: 20 }}>{input.key}</div>
                         {input.showControl() && (
                             <Control
                                 className="input-control"

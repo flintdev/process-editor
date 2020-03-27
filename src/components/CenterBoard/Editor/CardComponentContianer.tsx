@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import { red } from '@material-ui/core/colors';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -13,8 +12,8 @@ import StepManager from '../../../utils/StepManager';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
-      maxWidth: 345,
-      minWidth: 345
+      maxWidth: 400,
+      minWidth: 400,
     },
     media: {
       height: 0,
@@ -31,7 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
       transform: 'rotate(180deg)',
     },
     avatar: {
-      backgroundColor: red[500],
+      backgroundColor: "#eee",
+      color: "black"
     },
   }),
 );
@@ -43,9 +43,7 @@ export default function CardComponentContianer(props: { data: any, type: String,
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.icon}
-          </Avatar>
+          React.cloneElement(props.icon, {style: { fontSize: 45, color: "black"}})
         }
         action={
           <IconButton aria-label="settings" onClick={() => props.stepDbClick(new StepManager().cleanStepData(props.data))}>
@@ -58,7 +56,7 @@ export default function CardComponentContianer(props: { data: any, type: String,
       <CardContent style={{backgroundColor: '#ddd'}}>
         <InputBase
           disabled={true}
-          style={{padding: 10, backgroundColor: `white`, textAlign: `center`, width: '100%'}}
+          style={{backgroundColor: `#ddd`, textAlign: `center`, width: '100%', fontSize: 30, color: "black", fontWeight: 600}}
           autoFocus={true}
           defaultValue={props.label}
           inputProps={{ 'aria-label': 'naked' }}
