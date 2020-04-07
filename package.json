@@ -1,6 +1,6 @@
 {
   "name": "@flintdev/process-editor",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "npm package to edit process data of application as flint component",
   "main": "dist/index.js",
   "scripts": {
