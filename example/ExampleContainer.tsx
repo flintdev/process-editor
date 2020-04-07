@@ -23,12 +23,6 @@ const stepOptions = [
         "icon": <RadioButtonCheckedIcon/>
     },
     {
-        "type": "Trigger",
-        "group": "Standard",
-        "category": "Automation",
-        "icon": <CodeIcon/>
-    },
-    {
         "type": "Script",
         "group": "Standard",
         "category": "Automation",
