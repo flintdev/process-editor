@@ -5,6 +5,7 @@ import EndComponentWidget from "./EndComponentWidget";
 export default class CardComponent extends Rete.Component {
     numSocket: any;
     stepDbClick: any;
+    data: any;
     constructor(numSocket: any, icon: any, type: string, category: string, group: string, stepDbClick: any) {
         super(type);
         this.numSocket = numSocket;
@@ -17,12 +18,12 @@ export default class CardComponent extends Rete.Component {
         this.data.category = category;
     }
 
-    helperIO(inputs: any[], outputs: any[], node: any) {
+    helperIO(inputs: any[], outputs: any[], node: any, multiConns: boolean) {
         outputs.forEach((o: any) => {
-            node.addOutput(new Rete.Output(o.name, "Number", this.numSocket, o.multiConns))
+            node.addOutput(new Rete.Output(o.name, "Number", this.numSocket, true))
         })
         inputs.forEach((o: any) => {
-            node.addInput(new Rete.Input(o.name, "Number", this.numSocket, o.multiConns))
+            node.addInput(new Rete.Input(o.name, "Number", this.numSocket, multiConns))
         })
         return node
     }
@@ -34,7 +35,7 @@ export default class CardComponent extends Rete.Component {
         } else {
             switch(this.data.type) {
                 case "End":
-                    node.data.inputs = [{"multiConns": true, "name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
+                    node.data.inputs = [{"name": "input1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
                     node.data.outputs = []
                     break;
                 case "Hub":
@@ -49,8 +50,8 @@ export default class CardComponent extends Rete.Component {
                     node.data.outputs = node.data.outputs || [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]
             }
         }
-    
-        node = this.helperIO(node.data.inputs, node.data.outputs, node)
+        const multiConns = new Set(["End", "Hub"])
+        node = this.helperIO(node.data.inputs, node.data.outputs, node, multiConns.has(this.data.type))
 
         node.data.stepDbClick = this.data.stepDbClick;
         node.data.handleInputChange = (e: any) => node.data.label = e.target.value;

@@ -77,7 +77,7 @@ class RootContainer extends React.Component<Props, any> {
         return (
             <React.Fragment>
                 <CssBaseline />
-                <TopAppBar name={name} onSaved={onSaved} callAction={this.callAction} onClose={onClose}/>
+                <TopAppBar triggerDrop={this.triggerDrop} stepOptions={stepOptions} name={name} onSaved={onSaved} callAction={this.callAction} onClose={onClose}/>
                 <LeftPaneContainer stepOptions={stepOptions} triggerDrop={this.triggerDrop}>
                     <HotKeyWrapper handlers={this.handlers}>
                         <Editor

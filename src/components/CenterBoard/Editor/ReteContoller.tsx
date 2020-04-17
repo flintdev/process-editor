@@ -81,8 +81,11 @@ export async function createEditor(
 
     };
 
-    const deleteNode = (node: any)  =>{
-        editor.removeNode(node);
+    const deleteNode = async (node: any)  =>{
+        if (node) {
+            await editor.removeNode(node);
+            stepSingleClick(null);
+        }
     }
 
 
