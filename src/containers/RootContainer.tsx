@@ -8,6 +8,7 @@ import LeftPaneContainer from '../components/LeftPane/LeftPaneContainer';
 import TopAppBar from '../components/TopAppBar';
 import { CssBaseline } from '@material-ui/core';
 import Editor from '../components/CenterBoard/Editor/Editor';
+import HotKeyWrapper from '../components/CenterBoard/HotKeyWrapper';
 
 const styles = createStyles({
     root: {
@@ -26,11 +27,16 @@ export interface Props extends WithStyles<typeof styles>, RootState {
     onClose: any,
     stepDbClick: any
     root?: any,
+    name?: string
 }
 
 class RootContainer extends React.Component<Props, any> {
+    constructor(props: any){
+        super(props);
+        this.selectNode = this.selectNode.bind(this);
+    }
     state = {
-
+        selectedNode: null
     };
 
     editorActions: any = {};
@@ -40,33 +46,48 @@ class RootContainer extends React.Component<Props, any> {
         this.editorActions.handleRender(newStepData)
     }
 
-    triggerDrop = (labelText: string) => {
-        this.editorActions.handleDrop(labelText)
+    triggerDrop = (labelText: string, e: any) => {
+        this.editorActions.handleDrop(labelText, e)
     }
 
     callAction = (action: string) => {
         this.editorActions.handleCallAction(action)
     }
 
+    selectNode = (node: any) => {
+        this.setState({selectedNode: node})
+    }
+
     componentDidMount(): void {
         this.props.operations.updateStepData = this.updateStepData;
     }
 
+    handlers = {
+        DELETE_NODE: () => {
+            if (this.state.selectedNode) {
+                this.editorActions.handleDeleteNode(this.state.selectedNode)
+            }
+        }
+    };
+
     render() {
         const { classes } = this.props;
-        const { stepOptions, editorData, onSaved, onClose, stepDbClick } = this.props;
-
+        const { stepOptions, editorData, onSaved, onClose, stepDbClick, name } = this.props;
+        
         return (
             <React.Fragment>
                 <CssBaseline />
-                <TopAppBar onSaved={onSaved} callAction={this.callAction} onClose={onClose}/>
+                <TopAppBar name={name} onSaved={onSaved} callAction={this.callAction} onClose={onClose}/>
                 <LeftPaneContainer stepOptions={stepOptions} triggerDrop={this.triggerDrop}>
-                    <Editor
-                        initialData={editorData}
-                        stepOptions={stepOptions}
-                        stepDbClick={stepDbClick}
-                        editorActions={this.editorActions}
-                    />
+                    <HotKeyWrapper handlers={this.handlers}>
+                        <Editor
+                            selectNode={this.selectNode}
+                            initialData={editorData}
+                            stepOptions={stepOptions}
+                            stepDbClick={stepDbClick}
+                            editorActions={this.editorActions}
+                        />
+                    </HotKeyWrapper>
                 </LeftPaneContainer>
             </React.Fragment>
         )

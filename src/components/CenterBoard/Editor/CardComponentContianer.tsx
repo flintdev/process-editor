@@ -36,27 +36,29 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function CardComponentContianer(props: { data: any, type: String, category: String, label: String, icon: any, stepDbClick: any}) {
+export default function CardComponentContianer(props: { data: any, type: String, category: String, label: String, icon: any, stepDbClick: any, handleInputChange: any}) {
   const classes = useStyles({});
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} onDoubleClick={(e) => {
+        e.stopPropagation();
+        props.stepDbClick(new StepManager().cleanStepData(props.data))
+      }}>
       <CardHeader
         avatar={
-          React.cloneElement(props.icon, {style: { fontSize: 45, color: "black"}})
+          React.cloneElement(props.icon, {style: { fontSize: 40, color: "black"}})
         }
         action={
           <IconButton aria-label="settings" onClick={() => props.stepDbClick(new StepManager().cleanStepData(props.data))}>
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.type}
-        subheader={props.category}
+        title={<span style={{fontSize: 25, color: "#333", fontWeight: 600}}>{props.type}</span>}
       />
       <CardContent style={{backgroundColor: '#ddd'}}>
         <InputBase
-          disabled={true}
-          style={{backgroundColor: `#ddd`, textAlign: `center`, width: '100%', fontSize: 30, color: "black", fontWeight: 600}}
+          onChange={props.handleInputChange}
+          style={{paddingLeft: 5, backgroundColor: `#ddd`, textAlign: `center`, width: '100%', fontSize: 30, color: "black", fontWeight: 600}}
           autoFocus={true}
           defaultValue={props.label}
           inputProps={{ 'aria-label': 'naked' }}

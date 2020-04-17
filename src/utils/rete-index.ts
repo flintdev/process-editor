@@ -3,8 +3,6 @@ import Rete from "rete";
 import ReactRenderPlugin, { Node, Socket, Control } from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 // @ts-ignore
-import ContextMenuPlugin from "rete-context-menu-plugin";
-// @ts-ignore
 import HistoryPlugin from 'rete-history-plugin';
 // @ts-ignore
 import AreaPlugin from "rete-area-plugin";

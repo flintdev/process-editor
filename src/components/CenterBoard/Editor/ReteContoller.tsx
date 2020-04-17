@@ -1,15 +1,23 @@
 import Rete from "../../../utils/rete-index";
-import {ReactRenderPlugin, ConnectionPlugin, ContextMenuPlugin, AreaPlugin, HistoryPlugin} from "../../../utils/rete-index";
+import {ReactRenderPlugin, ConnectionPlugin, AreaPlugin, ContextMenuPlugin, HistoryPlugin} from "../../../utils/rete-index";
 import CardComponent from "./CardComponent";
+// import MyContextMenu from "../../../../../_rete-plugin/my-context-menu-plugin";
+import MyContextMenu from "./Menu";
 
-export async function createEditor(container: HTMLDivElement, editorConfig: any, onChange: (editorConfig: any) => void, stepOptions: any[], stepDbClick: any) {
+export async function createEditor(
+    container: HTMLDivElement,
+    editorConfig: any,
+    onChange: (editorConfig: any) => void, stepOptions: any[],
+    stepDbClick: any,
+    stepSingleClick: any
+) {
     var numSocket = new Rete.Socket("Number value");
     var components = stepOptions.map(o => new CardComponent(numSocket, o.icon, o.type, o.category, o.group, stepDbClick));
 
     var editor = new Rete.NodeEditor("editor@0.0.1", container);
     editor.use(ConnectionPlugin);
     editor.use(ReactRenderPlugin);
-    editor.use(ContextMenuPlugin);
+    editor.use(MyContextMenu)
     editor.use(HistoryPlugin, { keyboard: true });
 
 
@@ -35,6 +43,13 @@ export async function createEditor(container: HTMLDivElement, editorConfig: any,
         }
     );
 
+    editor.on('zoom', ({ source }) => {
+        return source !== 'dblclick';
+    });
+
+    editor.on('nodeselect', (node) => {
+        stepSingleClick(node)
+    })
     //Load up the initial config
     if (editorConfig) {
         await engine.abort();
@@ -54,7 +69,8 @@ export async function createEditor(container: HTMLDivElement, editorConfig: any,
         editor.trigger(action);
     };
 
-    const dropNode = async (labelText: string) => {
+    const dropNode = async (labelText: string, e: any) => {
+        editor.view.area.pointermove(e as any as PointerEvent);
         const {x, y} = editor.view.area.mouse;
         const targetComponent = components.filter((o:any) => o.name === labelText)[0];
         if (targetComponent) {
@@ -65,6 +81,10 @@ export async function createEditor(container: HTMLDivElement, editorConfig: any,
 
     };
 
+    const deleteNode = (node: any)  =>{
+        editor.removeNode(node);
+    }
 
-    return {focusEditor, reRender, dropNode, callAction}
+
+    return {focusEditor, reRender, dropNode, callAction, deleteNode}
 }

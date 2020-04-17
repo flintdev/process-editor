@@ -92,8 +92,8 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
 function StyledTreeItem(props: StyledTreeItemProps) {
   const classes = useTreeItemStyles();
   const { labelText, labelIcon, labelInfo, color, bgColor, triggerDrop, ...other } = props;
-  const handleTriggerDrop = () => {
-    triggerDrop(labelText)
+  const handleTriggerDrop = (e: any) => {
+    triggerDrop(labelText, e)
   }
   return (
     <TreeItem
