@@ -112,6 +112,7 @@ class ExampleContainer extends React.Component<Props, object> {
                 <StepDialog actions={this.actions} stepDbClickUpdate={this.stepDbClickUpdate}/>
                 <div style={{height: '100vh'}}>
                     <ProcessEditor
+                        name={'[example-process] github.com/flintdev/expense-process'}
                         operations={this.operations}
                         stepOptions={stepOptions}
                         editorData={initialData}
