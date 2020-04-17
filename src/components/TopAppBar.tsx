@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles, withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import RedoIcon from '@material-ui/icons/Redo';
@@ -10,6 +10,9 @@ import { Dispatch } from "redux";
 import { StoreState } from "../redux/state";
 import * as actions from "../redux/modules/editor/actions";
 import StepManager from "../utils/StepManager";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,7 +21,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
-    }
+    },
+    title: {
+      maxWidth: 500,
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis"
+    },
   }),
 );
 
@@ -27,33 +36,42 @@ function TopAppBar(props: any) {
 
   return (
     <div className={classes.grow}>
-        <Toolbar style={{border: `1px solid gray`}}>
-          <IconButton
-            onClick={() => props.callAction('undo')}
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <UndoIcon />
-          </IconButton>
-          <IconButton
-            onClick={() => props.callAction('redo')}
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <RedoIcon />
-          </IconButton>
-          <div className={classes.grow} />
-          <Button className={classes.menuButton} variant="contained" color="primary" onClick={() => props.onSaved(new StepManager().cleanEditorData(props.editor.editorJSON))}>
-            Save
+      <Toolbar style={{ border: `1px solid gray` }} variant="dense">
+        <IconButton
+          onClick={props.onClose}
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="back"
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+
+        <Typography color="inherit" className={classes.title}>{props.name}</Typography>
+
+        <div className={classes.grow} />
+        <IconButton
+          onClick={() => props.callAction('undo')}
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="open drawer"
+        >
+          <UndoIcon />
+        </IconButton>
+        <IconButton
+          onClick={() => props.callAction('redo')}
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="open drawer"
+        >
+          <RedoIcon />
+        </IconButton>
+        <Button className={classes.menuButton} variant="contained" color="primary" onClick={() => props.onSaved(new StepManager().cleanEditorData(props.editor.editorJSON))}>
+          Save
           </Button>
-          <Button className={classes.menuButton} variant="text" color="primary" onClick={props.onClose}>
-            Close
-          </Button>
-        </Toolbar>
+      </Toolbar>
     </div>
   );
 }
@@ -64,7 +82,7 @@ const mapStateToProps = (state: StoreState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<actions.EditorAction>) => {
   return {
-      setEditorJSON: (data: object) => dispatch(actions.setEditorJSON(data)),
+    setEditorJSON: (data: object) => dispatch(actions.setEditorJSON(data)),
   }
 };
 

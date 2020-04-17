@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from "redux";
 import { StoreState } from "../../../redux/state";
 import * as actions from "../../../redux/modules/editor/actions";
+import styled from "styled-components";
 
 const styles = createStyles({
     root: {
@@ -16,6 +17,22 @@ const styles = createStyles({
         width: 300,
     }
 });
+
+const EditorWrapper = styled.div`
+    .connection .main-path {
+        fill: none;
+        stroke-width: 5px;
+        stroke: grey;
+    }
+    .node {
+        background: grey;
+        border: 5px solid grey;
+    }
+    .node.selected {
+        background: #009688;
+        border: 5px solid #009688;;
+    }
+`
 
 class Editor extends React.Component<any, any> {
     constructor(props: any) {
@@ -30,14 +47,15 @@ class Editor extends React.Component<any, any> {
         this.props.editorActions.handleRender = this.handleRender;
         this.props.editorActions.handleDrop = this.handleDrop;
         this.props.editorActions.handleCallAction = this.handleCallAction;
+        this.props.editorActions.handleDeleteNode = this.handleDeleteNode;
         const { initialData, stepOptions, stepDbClick } = this.props;
         this.setState({ initialData: initialData });
         const init = async (ref: HTMLDivElement, data: any, action: (editorConfig: any) => void) => {
-            const { focusEditor, reRender, dropNode, callAction } = await createEditor(ref, data, action, stepOptions, stepDbClick);
-            this.setState({ focusEditor: focusEditor, reRender: reRender, dropNode: dropNode, callAction:callAction });
+            const { focusEditor, reRender, dropNode, callAction, deleteNode } = await createEditor(ref, data, action, stepOptions, stepDbClick, this.stepSingleClick);
+            this.setState({ focusEditor: focusEditor, reRender: reRender, dropNode: dropNode, callAction:callAction, deleteNode:deleteNode });
         };
         const tmp = (
-            <div
+            <EditorWrapper
                 style={{ width: "100%", height: "100%"}}
                 ref={ref =>
                     ref && init(ref, initialData, this.onChange)
@@ -65,12 +83,20 @@ class Editor extends React.Component<any, any> {
         this.state.reRender(newEditorConfig);
     }
 
-    handleDrop = (labelText: string) => {
-        this.state.dropNode(labelText);
+    handleDrop = (labelText: string, e: any) => {
+        this.state.dropNode(labelText, e);
     }
     
     handleCallAction = (action: string) => {
         this.state.callAction(action);
+    }
+
+    handleDeleteNode = (node: any) => {
+        this.state.deleteNode(node);
+    }
+
+    stepSingleClick = (node: any) => {
+        this.props.selectNode(node);
     }
 
     render() {

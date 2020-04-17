@@ -32,9 +32,9 @@ export default class EndComponentWidget extends Node<Props, State> {
         return (
             <div className={`node ${selected}`} style={{borderRadius: 28, padding: 3, minWidth: 48, minHeight: 48}}>
                 {/* Inputs */}
-                {inputs.map(input => (
+                {inputs.map((input, i) => (
 
-                        <CustomSocket>
+                        <CustomSocket key={i}>
                             <Socket
                                 type="input"
                                 socket={input.socket}

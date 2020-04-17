@@ -56,16 +56,13 @@ const Wrapper: React.FunctionComponent<any> = styled.div`
 
 
 export default function LeftPaneContainer(props: any) {
-  const [size, setSize] = React.useState(400);
+  const [size, setSize] = React.useState(240);
   const { children, stepOptions } = props;
 
   return (
       <div
         style={{ display: 'flex', flexDirection: 'row', height: "calc(100% - 64px)"}}
       >
-        <div style={{ height: "100%", width: size, padding: 10 }}>
-          {!!stepOptions && <CustomizedTreeView data={stepOptions} triggerDrop={props.triggerDrop}/>}
-        </div>
         <div style={{
           width: "100%",
           height: "100%",
@@ -75,6 +72,9 @@ export default function LeftPaneContainer(props: any) {
         }}>
 
           {children}
+        </div>
+        <div style={{ height: "100%", width: size, padding: 10 }}>
+          {!!stepOptions && <CustomizedTreeView data={stepOptions} triggerDrop={props.triggerDrop}/>}
         </div>
       </div>
   )

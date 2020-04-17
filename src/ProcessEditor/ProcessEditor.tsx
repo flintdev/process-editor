@@ -19,7 +19,8 @@ export interface Props extends WithStyles<typeof styles>, ProcessEditorProps {
     editorData: any,
     onSaved: any,
     onClose: any,
-    stepDbClick: any
+    stepDbClick: any,
+    name?: string
 }
 
 class ProcessEditor extends React.Component<Props, object> {

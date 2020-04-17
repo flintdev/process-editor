@@ -28,8 +28,6 @@ export default class CardComponent extends Rete.Component {
     }
 
     builder(node: any) {
-
-        console.log('>>> type', this.data.type)
         if (this.data.category === "Trigger") {
             node.data.inputs = []
             node.data.outputs = node.data.outputs || [{"name": "output1", "condition": { "key": "null", "operator": "always", "value": "null"}}]    
@@ -55,6 +53,7 @@ export default class CardComponent extends Rete.Component {
         node = this.helperIO(node.data.inputs, node.data.outputs, node)
 
         node.data.stepDbClick = this.data.stepDbClick;
+        node.data.handleInputChange = (e: any) => node.data.label = e.target.value;
         node.data.label = `${node.data.label || this.data.label}`;
         node.data.code = `${node.data.code || ''}`;
 
