@@ -13,6 +13,7 @@ import StepManager from "../utils/StepManager";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import StepsDock from './TopAppBar/StepsDock';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,6 +51,9 @@ function TopAppBar(props: any) {
         <Typography color="inherit" className={classes.title}>{props.name}</Typography>
 
         <div className={classes.grow} />
+        <StepsDock stepOptions={props.stepOptions} triggerDrop={props.triggerDrop}/>
+
+
         <IconButton
           onClick={() => props.callAction('undo')}
           edge="start"
