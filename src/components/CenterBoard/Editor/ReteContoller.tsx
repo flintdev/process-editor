@@ -1,5 +1,5 @@
 import Rete from "../../../utils/rete-index";
-import {ReactRenderPlugin, ConnectionPlugin, AreaPlugin, ContextMenuPlugin, HistoryPlugin} from "../../../utils/rete-index";
+import {ReactRenderPlugin, ConnectionPlugin, AreaPlugin, HistoryPlugin} from "../../../utils/rete-index";
 import CardComponent from "./CardComponent";
 // import MyContextMenu from "../../../../../_rete-plugin/my-context-menu-plugin";
 import MyContextMenu from "./Menu";

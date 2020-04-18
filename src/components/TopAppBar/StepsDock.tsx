@@ -11,9 +11,9 @@ export default class StepsDock extends React.Component<any> {
             triggerDrop(labelText, e)
         }
         return (
-            <div style={{paddingRight: 100}}>
+            <div style={{paddingLeft: 100, display: 'flex'}}>
                 {!!stepOptions &&
-                    stepOptions.slice(0,5).map((step: any) => {
+                    stepOptions.slice(0,10).map((step: any, i: number) => {
                         const { type, icon } = step;
                         return (
                             <DraggableCore
@@ -21,8 +21,11 @@ export default class StepsDock extends React.Component<any> {
                                 position={{ x: 0, y: 0 }}
                                 scale={1}
                                 onStop={(e) => handleTriggerDrop(type, e)}
+                                key={i}
                             >
-                                {icon}
+                                <div style={{marginRight: 10, cursor: "pointer"}}>
+                                    {icon}
+                                </div>
                             </DraggableCore>
                         )
                     })

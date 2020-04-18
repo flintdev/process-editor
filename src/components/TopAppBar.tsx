@@ -25,9 +25,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       maxWidth: 500,
+      minWidth: 500,
       overflow: "hidden",
       whiteSpace: "nowrap",
-      textOverflow: "ellipsis"
+      textOverflow: "ellipsis",
+      cursor: "default"
     },
   }),
 );
@@ -49,9 +51,9 @@ function TopAppBar(props: any) {
         </IconButton>
 
         <Typography color="inherit" className={classes.title}>{props.name}</Typography>
+        <StepsDock stepOptions={props.stepOptions} triggerDrop={props.triggerDrop}/>
 
         <div className={classes.grow} />
-        <StepsDock stepOptions={props.stepOptions} triggerDrop={props.triggerDrop}/>
 
 
         <IconButton

@@ -7,4 +7,4 @@ import HistoryPlugin from 'rete-history-plugin';
 // @ts-ignore
 import AreaPlugin from "rete-area-plugin";
 
-export { Rete as default, ReactRenderPlugin, ConnectionPlugin, ContextMenuPlugin, AreaPlugin, Node, Socket, Control, HistoryPlugin };
+export { Rete as default, ReactRenderPlugin, ConnectionPlugin, AreaPlugin, Node, Socket, Control, HistoryPlugin };

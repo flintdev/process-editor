@@ -79,9 +79,6 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       padding: theme.spacing(0.5, 0),
     },
-    labelIcon: {
-      marginRight: theme.spacing(1),
-    },
     labelText: {
       fontWeight: 'inherit',
       flexGrow: 1,
@@ -105,7 +102,7 @@ function StyledTreeItem(props: StyledTreeItemProps) {
             scale={1}
             onStop={handleTriggerDrop}>
             <div style={{ display: "flex", flexDirection: 'row' }}>
-              <div className={classes.labelIcon}>
+              <div style={{marginRight: 5}}>
                 {labelIcon}
               </div>
               <Typography variant="body2" className={classes.labelText}>
